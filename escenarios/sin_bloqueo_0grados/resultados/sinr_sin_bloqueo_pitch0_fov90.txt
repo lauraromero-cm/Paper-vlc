@@ -1,0 +1,18 @@
+Escenario: sin bloqueo, pitch=0 deg, FOV=90 deg (abierto)
+Generado: 2026-07-18T14:49:31.818372
+
+gamma_th,1 (Servicio Minimo) = 0.4142 (-3.83 dB)
+gamma_th,2 (Servicio Objetivo) = 22.5950 (13.54 dB)
+
+Matriz Pr[Tx][Rx] (mW):
+Tx\Rx         6         7         8         9
+Tx  2   21.8800    2.2900    0.1800    0.0600
+Tx  3    2.5000   21.7400    0.0600    0.0400
+Tx  4    0.1600    0.0900   21.7900    2.3300
+Tx  5    0.0800    0.0100    2.3900   21.7900
+
+SINR por asiento:
+Detector 6 (Tx propio 2): Pr_signal=21.8800 mW  Pr_interference=2.7400 mW  SINR=63.7666 (18.05 dB)  | Outage minimo: no  | Outage objetivo: no
+Detector 7 (Tx propio 3): Pr_signal=21.7400 mW  Pr_interference=2.3900 mW  SINR=82.7415 (19.18 dB)  | Outage minimo: no  | Outage objetivo: no
+Detector 8 (Tx propio 4): Pr_signal=21.7900 mW  Pr_interference=2.6300 mW  SINR=68.6441 (18.37 dB)  | Outage minimo: no  | Outage objetivo: no
+Detector 9 (Tx propio 5): Pr_signal=21.7900 mW  Pr_interference=2.4300 mW  SINR=80.4085 (19.05 dB)  | Outage minimo: no  | Outage objetivo: no
