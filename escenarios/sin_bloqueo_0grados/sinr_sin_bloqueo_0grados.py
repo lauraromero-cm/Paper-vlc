@@ -5,7 +5,7 @@ _PROJECT_ROOT = os.path.abspath(os.path.join(_THIS_DIR, "..", ".."))
 sys.path.insert(0, os.path.join(_PROJECT_ROOT, "codigo_comun"))
 from zemax_lifi_common import (
     PythonStandaloneApplication, get_par_double, set_par_int, set_par_double,
-    set_fov, get_global_z_axis, run_nsc_trace, read_zrd_hits_on_object, find_zrd_file
+    set_fov, get_global_z_axis, run_nsc_trace, read_zrd_hits_on_objects, find_zrd_file
 )
 import noise_model as nm
 
@@ -20,7 +20,8 @@ if __name__ == '__main__':
     TheNCE = TheSystem.NCE
     TX_IDXS = [2, 3, 4, 5]
     RX_IDXS = [6, 7, 8, 9]
-    RAYS_PER_SOURCE = 200000
+    RAYS_PER_SOURCE = 1000000
+    LAYOUT_RAYS = 100000
     POPT_W = 2.0
     ESCENARIO = "sin_bloqueo"
     PITCH_DEG = 0.0
@@ -33,7 +34,7 @@ if __name__ == '__main__':
         src = TheNCE.GetObjectAt(src_idx)
         for i, val in enumerate(lambert_m1):
             set_par_double(src, ZOSAPI, 11 + i, val)
-        set_par_int(src, ZOSAPI, 1, 1000)
+        set_par_int(src, ZOSAPI, 1, LAYOUT_RAYS)
         set_par_int(src, ZOSAPI, 2, RAYS_PER_SOURCE)
 
     for rx_idx in RX_IDXS:
@@ -55,12 +56,17 @@ if __name__ == '__main__':
             set_par_int(src, ZOSAPI, 2, RAYS_PER_SOURCE if src_idx == active_tx else 0)
             assert get_par_double(src, ZOSAPI, 3) == POPT_W, "Power no deberia tocarse"
 
+        t_trace_start = datetime.datetime.now()
+        print(f"[{t_trace_start.isoformat(timespec='seconds')}] Iniciando trazado con solo Tx {active_tx} activo "
+              f"({RAYS_PER_SOURCE} rayos de analisis)...", flush=True)
         zrd_name = f"sinr_only_tx{active_tx}.ZRD"
         zrd_format_full = ZOSAPI.Tools.RayTrace.ZRDFormatType.CompressedFullData
         total_energy = run_nsc_trace(TheSystem, save_rays_file=zrd_name,
                                       zrd_format=zrd_format_full, scatter=True, split=False, polarization=False)
-        print(f"Trazado con solo Tx {active_tx} activo: energia lanzada = {total_energy} W "
-              f"(esperado ~{POPT_W} W)")
+        t_trace_done = datetime.datetime.now()
+        print(f"[{t_trace_done.isoformat(timespec='seconds')}] Trazado Tx {active_tx} completado en "
+              f"{(t_trace_done - t_trace_start).total_seconds():.1f}s. Energia lanzada = {total_energy} W "
+              f"(esperado ~{POPT_W} W)", flush=True)
         assert abs(total_energy - POPT_W) < 1e-6, \
             f"Energia lanzada inesperada ({total_energy} W): la aislacion de fuentes fallo"
 
@@ -69,13 +75,20 @@ if __name__ == '__main__':
             _THIS_DIR,
             _PROJECT_ROOT,
         ])
-        print(f"  ZRD encontrado en: {zrd_path}")
+        print(f"  ZRD encontrado en: {zrd_path}", flush=True)
+
+        t_read_start = datetime.datetime.now()
+        print(f"  [{t_read_start.isoformat(timespec='seconds')}] Leyendo hits para los 4 detectores "
+              f"en una sola pasada...", flush=True)
+        hits_por_detector = read_zrd_hits_on_objects(TheSystem, zrd_path, RX_IDXS, progress_every=100000)
+        t_read_done = datetime.datetime.now()
+        print(f"  Lectura completa en {(t_read_done - t_read_start).total_seconds():.1f}s", flush=True)
 
         for rx_idx in RX_IDXS:
-            hits = read_zrd_hits_on_object(TheSystem, zrd_path, rx_idx)
+            hits = hits_por_detector[rx_idx]
             Pr = sum(h[6] for h in hits)
             Pr_matrix[active_tx][rx_idx] = Pr
-            print(f"  -> Detector {rx_idx}: {Pr*1000:.4f} mW ({len(hits)} hits)")
+            print(f"  -> Detector {rx_idx}: {Pr*1000:.4f} mW ({len(hits)} hits)", flush=True)
 
         os.remove(zrd_path)
 

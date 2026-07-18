@@ -111,9 +111,21 @@ def find_zrd_file(filename, search_dirs):
     raise FileNotFoundError(f"No se encontro '{basename}' en: {search_dirs}")
 
 
-def read_zrd_hits_on_object(TheSystem, zrd_full_path, target_object):
+def read_zrd_hits_on_object(TheSystem, zrd_full_path, target_object, progress_every=None):
     """Recorre el ZRD y devuelve una lista de (X,Y,Z,L,M,N,intensity) para cada
-    segmento cuyo HitObject == target_object."""
+    segmento cuyo HitObject == target_object.
+
+    progress_every: si se da, imprime un aviso de progreso cada N rayos leidos
+    (util para corridas largas donde stdout esta bufferizado)."""
+    return read_zrd_hits_on_objects(TheSystem, zrd_full_path, [target_object], progress_every)[target_object]
+
+
+def read_zrd_hits_on_objects(TheSystem, zrd_full_path, target_objects, progress_every=None):
+    """Como read_zrd_hits_on_object, pero revisa VARIOS objetos objetivo en una
+    sola pasada por el ZRD (evita releer el mismo archivo una vez por detector).
+    Devuelve un dict {target_object: [hits...]}."""
+    import time
+    target_set = set(target_objects)
     reader = TheSystem.Tools.OpenRayDatabaseReader()
     reader.ZRDFile = zrd_full_path
     reader.RunAndWaitForCompletion()
@@ -121,19 +133,27 @@ def read_zrd_hits_on_object(TheSystem, zrd_full_path, target_object):
         raise RuntimeError(f"No se pudo leer el ZRD: {reader.ErrorMessage}")
     results = reader.GetResults()
 
-    hits = []
+    hits = {t: [] for t in target_objects}
+    n_rays = 0
+    t0 = time.time()
     while results.ReadNextRay():
+        n_rays += 1
         num_segs = results.NumSegments
         for _ in range(num_segs):
             if not results.ReadNextRaySegment():
                 break
-            if results.HitObject == target_object:
-                hits.append((
+            ho = results.HitObject
+            if ho in target_set:
+                hits[ho].append((
                     results.X, results.Y, results.Z,
                     results.L, results.M, results.N,
                     results.Intensity,
                     results.SegmentLevel,
                     results.RayNumber,
                 ))
+        if progress_every and n_rays % progress_every == 0:
+            elapsed = time.time() - t0
+            total_hits = sum(len(v) for v in hits.values())
+            print(f"    ... {n_rays} rayos leidos, {total_hits} hits, {elapsed:.1f}s transcurridos", flush=True)
     reader.Close()
     return hits
