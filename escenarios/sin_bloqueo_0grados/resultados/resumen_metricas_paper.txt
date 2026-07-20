@@ -1,0 +1,19 @@
+Metricas indispensables (Seccion 5) - Escenario sin bloqueo, pitch=0 deg
+==============================================================================
+
+gamma_th,1 (Servicio Minimo)   = -3.83 dB
+gamma_th,2 (Servicio Objetivo) = 13.54 dB
+
+  FOV(deg)   SINR prom(dB)    SINR min(dB)   Pout min   Pout obj
+       5.0           18.68           18.46      0.00%      0.00%
+      10.0           18.73           18.51      0.00%      0.00%
+      20.0           18.65           18.32      0.00%      0.00%
+      30.0           18.67           18.27      0.00%      0.00%
+      40.0           18.68           18.35      0.00%      0.00%
+      50.0           18.75           18.47      0.00%      0.00%
+      60.0           18.71           18.47      0.00%      0.00%
+      70.0           18.71           18.48      0.00%      0.00%
+      80.0           18.66           18.35      0.00%      0.00%
+      90.0           18.70           18.42      0.00%      0.00%
+
+Conclusion: en ausencia de bloqueo, Pout=0 para ambos umbrales en todo el rango de FOV evaluado (5-90 grados); el enlace LOS mantiene margen suficiente (~5 dB) sobre el umbral de Servicio Objetivo en todos los casos. Esta tabla sirve de linea base para comparar contra los escenarios con bloqueo, donde se espera que Pout > 0 sea la metrica que sustente la seleccion de FOVopt.
