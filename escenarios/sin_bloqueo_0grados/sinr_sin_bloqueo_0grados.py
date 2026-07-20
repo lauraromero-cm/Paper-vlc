@@ -112,22 +112,33 @@ if __name__ == '__main__':
     print(f"gamma_th,1 (Servicio Minimo) = {gamma_th1:.4f} ({nm.db(gamma_th1):.2f} dB)")
     print(f"gamma_th,2 (Servicio Objetivo) = {gamma_th2:.4f} ({nm.db(gamma_th2):.2f} dB)")
 
+    g_concentrador = nm.concentrator_gain(FOV_DEG)
+    print(f"\nGanancia del concentrador optico g(FOV={FOV_DEG} deg) = {g_concentrador:.4f} "
+          f"(n={nm.CONCENTRATOR_REFRACTIVE_INDEX})")
+
     print(f"\n=== SINR por asiento ({TAG}) ===")
     resultados_por_asiento = []
     for rx_idx in RX_IDXS:
         own_tx = own_tx_of[rx_idx]
-        Pr_signal = Pr_matrix[own_tx][rx_idx]
-        Pr_interference = sum(Pr_matrix[tx][rx_idx] for tx in TX_IDXS if tx != own_tx)
+        Pr_signal_raw = Pr_matrix[own_tx][rx_idx]
+        Pr_interference_raw = sum(Pr_matrix[tx][rx_idx] for tx in TX_IDXS if tx != own_tx)
+        # La ganancia del concentrador se aplica a TODA la luz aceptada dentro del FOV,
+        # tanto senal como interferencia (el concentrador no distingue el origen).
+        Pr_signal = Pr_signal_raw * g_concentrador
+        Pr_interference = Pr_interference_raw * g_concentrador
         sinr, sigma2, Isig, Iint = nm.compute_sinr(Pr_signal, Pr_interference)
         outage1 = sinr < gamma_th1
         outage2 = sinr < gamma_th2
-        print(f"Detector {rx_idx} (Tx propio {own_tx}): Pr_signal={Pr_signal*1000:.4f} mW  "
+        print(f"Detector {rx_idx} (Tx propio {own_tx}): Pr_signal={Pr_signal*1000:.4f} mW "
+              f"(sin concentrador: {Pr_signal_raw*1000:.4f} mW)  "
               f"Pr_interference={Pr_interference*1000:.4f} mW  "
               f"SINR={sinr:.4f} ({nm.db(sinr):.2f} dB)  "
               f"| Outage minimo: {'SI' if outage1 else 'no'}  "
               f"| Outage objetivo: {'SI' if outage2 else 'no'}")
         resultados_por_asiento.append({
             "detector": rx_idx, "tx_propio": own_tx,
+            "Pr_signal_sin_concentrador_W": Pr_signal_raw,
+            "Pr_interference_sin_concentrador_W": Pr_interference_raw,
             "Pr_signal_W": Pr_signal, "Pr_interference_W": Pr_interference,
             "sigma2": sigma2, "SINR": sinr, "SINR_dB": nm.db(sinr),
             "outage_servicio_minimo": outage1, "outage_servicio_objetivo": outage2,
@@ -145,6 +156,8 @@ if __name__ == '__main__':
             "rayos_analisis_por_fuente": RAYS_PER_SOURCE, "Popt_W": POPT_W,
             "bandwidth_Hz": nm.BANDWIDTH_HZ, "temperatura_K": nm.TEMPERATURE_K,
             "R_min_bps": nm.R_MIN_BPS, "BER_max": nm.BER_MAX,
+            "concentrador_indice_refraccion": nm.CONCENTRATOR_REFRACTIVE_INDEX,
+            "concentrador_ganancia_g": g_concentrador,
         },
         "gamma_th1_servicio_minimo": gamma_th1,
         "gamma_th2_servicio_objetivo": gamma_th2,
@@ -162,8 +175,10 @@ if __name__ == '__main__':
         f.write(f"Escenario: {ESCENARIO}, pitch={PITCH_DEG} deg, FOV={FOV_DEG} deg\n")
         f.write(f"Generado: {salida['timestamp']}\n\n")
         f.write(f"gamma_th,1 (Servicio Minimo) = {gamma_th1:.4f} ({nm.db(gamma_th1):.2f} dB)\n")
-        f.write(f"gamma_th,2 (Servicio Objetivo) = {gamma_th2:.4f} ({nm.db(gamma_th2):.2f} dB)\n\n")
-        f.write("Matriz Pr[Tx][Rx] (mW):\n")
+        f.write(f"gamma_th,2 (Servicio Objetivo) = {gamma_th2:.4f} ({nm.db(gamma_th2):.2f} dB)\n")
+        f.write(f"Ganancia del concentrador g(FOV={FOV_DEG} deg, n={nm.CONCENTRATOR_REFRACTIVE_INDEX}) = "
+                f"{g_concentrador:.4f}\n\n")
+        f.write("Matriz Pr[Tx][Rx] SIN concentrador (mW):\n")
         f.write(header + "\n")
         for tx in TX_IDXS:
             row = f"Tx{tx:>3}  " + "  ".join(f"{Pr_matrix[tx][rx]*1000:>8.4f}" for rx in RX_IDXS)

@@ -1,18 +1,19 @@
 Escenario: sin_bloqueo, pitch=0.0 deg, FOV=90.0 deg
-Generado: 2026-07-18T15:25:24.482750
+Generado: 2026-07-20T14:02:48.319791
 
 gamma_th,1 (Servicio Minimo) = 0.4142 (-3.83 dB)
 gamma_th,2 (Servicio Objetivo) = 22.5950 (13.54 dB)
+Ganancia del concentrador g(FOV=90.0 deg, n=1.5) = 2.2500
 
-Matriz Pr[Tx][Rx] (mW):
+Matriz Pr[Tx][Rx] SIN concentrador (mW):
 Tx\Rx         6         7         8         9
-Tx  2   21.6880    2.3520    0.1760    0.0640
-Tx  3    2.3580   21.6480    0.0680    0.0260
-Tx  4    0.1560    0.0780   21.6600    2.3460
-Tx  5    0.0800    0.0360    2.3420   21.6680
+Tx  2   21.6120    2.3280    0.1620    0.0680
+Tx  3    2.3620   21.7000    0.0680    0.0420
+Tx  4    0.1600    0.0680   21.6740    2.3880
+Tx  5    0.0700    0.0340    2.3180   21.6460
 
 SINR por asiento:
-Detector 6 (Tx propio 2): Pr_signal=21.6880 mW  Pr_interference=2.5940 mW  SINR=69.9035 (18.44 dB)  | Outage minimo: no  | Outage objetivo: no
-Detector 7 (Tx propio 3): Pr_signal=21.6480 mW  Pr_interference=2.4660 mW  SINR=77.0636 (18.87 dB)  | Outage minimo: no  | Outage objetivo: no
-Detector 8 (Tx propio 4): Pr_signal=21.6600 mW  Pr_interference=2.5860 mW  SINR=70.1552 (18.46 dB)  | Outage minimo: no  | Outage objetivo: no
-Detector 9 (Tx propio 5): Pr_signal=21.6680 mW  Pr_interference=2.4360 mW  SINR=79.1194 (18.98 dB)  | Outage minimo: no  | Outage objetivo: no
+Detector 6 (Tx propio 2): Pr_signal=48.6270 mW  Pr_interference=5.8320 mW  SINR=69.5216 (18.42 dB)  | Outage minimo: no  | Outage objetivo: no
+Detector 7 (Tx propio 3): Pr_signal=48.8250 mW  Pr_interference=5.4675 mW  SINR=79.7456 (19.02 dB)  | Outage minimo: no  | Outage objetivo: no
+Detector 8 (Tx propio 4): Pr_signal=48.7665 mW  Pr_interference=5.7330 mW  SINR=72.3568 (18.59 dB)  | Outage minimo: no  | Outage objetivo: no
+Detector 9 (Tx propio 5): Pr_signal=48.7035 mW  Pr_interference=5.6205 mW  SINR=75.0880 (18.76 dB)  | Outage minimo: no  | Outage objetivo: no

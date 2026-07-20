@@ -41,6 +41,22 @@ NOISE_BW_FACTOR_I3 = 0.0868     # I3, integral de Personick (pulso raised-cosine
 # dado el filtrado espectral explicito del sistema).
 NEGLECT_BACKGROUND_SHOT_NOISE = True
 
+# Ganancia del concentrador optico (Tabla 1: "Implementacion FOV: Concentrador
+# optico"). Un concentrador real (tipo CPC) no solo limita el angulo de
+# aceptancia, tambien concentra/amplifica la luz que entra dentro de ese
+# angulo. Formula clasica (Kahn & Barry, Komine & Nakagawa):
+#   g(psi) = n^2 / sin^2(FOV)   para psi <= FOV,  0 en otro caso
+# n = indice de refraccion del concentrador; 1.5 es un valor tipico de
+# literatura VLC para un CPC de plastico/acrilico (supuesto, ajustable).
+CONCENTRATOR_REFRACTIVE_INDEX = 1.5
+
+
+def concentrator_gain(fov_deg, n=CONCENTRATOR_REFRACTIVE_INDEX):
+    """g(FOV) = n^2 / sin^2(FOV). FOV=90 deg da g=n^2 (sin concentracion angular,
+    solo la ganancia base del medio); FOV chico da ganancias grandes."""
+    fov_rad = math.radians(fov_deg)
+    return (n ** 2) / (math.sin(fov_rad) ** 2)
+
 
 def shot_noise_variance(Pr_total_W, B=BANDWIDTH_HZ, R=RESPONSIVITY):
     """sigma^2_shot = 2*q*R*Pr_total*B  (ruido shot inducido por la potencia optica total incidente)."""
