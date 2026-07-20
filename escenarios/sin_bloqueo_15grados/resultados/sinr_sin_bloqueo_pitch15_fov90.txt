@@ -1,0 +1,19 @@
+Escenario: sin_bloqueo, pitch=15.0 deg, FOV=90.0 deg
+Generado: 2026-07-20T17:15:27.641237
+
+gamma_th,1 (Servicio Minimo) = 0.4142 (-3.83 dB)
+gamma_th,2 (Servicio Objetivo) = 22.5950 (13.54 dB)
+Ganancia del concentrador g(FOV=90.0 deg, n=1.5) = 2.2500
+
+Matriz Pr[Tx][Rx] SIN concentrador (mW):
+Tx\Rx         6         7         8         9
+Tx  2   20.9580    1.5280    0.2400    0.1060
+Tx  3    3.0840   20.9200    0.0900    0.0400
+Tx  4    0.0700    0.0460   20.8940    3.0580
+Tx  5    0.0380    0.0460    1.4900   21.0060
+
+SINR por asiento:
+Detector 6 (Tx propio 2): Pr_signal=47.1555 mW  Pr_interference=7.1820 mW  SINR=43.1096 (16.35 dB)  | Outage minimo: no  | Outage objetivo: no
+Detector 7 (Tx propio 3): Pr_signal=47.0700 mW  Pr_interference=3.6450 mW  SINR=166.7606 (22.22 dB)  | Outage minimo: no  | Outage objetivo: no
+Detector 8 (Tx propio 4): Pr_signal=47.0115 mW  Pr_interference=4.0950 mW  SINR=131.7954 (21.20 dB)  | Outage minimo: no  | Outage objetivo: no
+Detector 9 (Tx propio 5): Pr_signal=47.2635 mW  Pr_interference=7.2090 mW  SINR=42.9835 (16.33 dB)  | Outage minimo: no  | Outage objetivo: no
