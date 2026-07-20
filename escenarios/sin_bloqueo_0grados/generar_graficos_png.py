@@ -21,11 +21,16 @@ combinado_path = os.path.join(_RES_DIR, "metricas_paper_combinado.json")
 if not os.path.exists(combinado_path):
     raise SystemExit(f"No existe {combinado_path}. Corre primero generar_metricas_tablas.py")
 
-rows = json.load(open(combinado_path, encoding="utf-8"))
-RX_IDXS = [6, 7, 8, 9]
+_combinado = json.load(open(combinado_path, encoding="utf-8"))
+rows = _combinado["rows"]
+seat_label_map = {int(k): v for k, v in _combinado["seat_label_map"].items()}  # obj Zemax -> asiento (paper)
+RX_IDXS = sorted(seat_label_map.keys())
+SEAT_ORDER = [seat_label_map[rx] for rx in RX_IDXS]  # [1, 2, 3, 4]
 
-# Paleta categorica (misma que la de las skill de dataviz: azul, verde, magenta, amarillo)
-COLORS = {6: "#2a78d6", 7: "#008300", 8: "#e87ba4", 9: "#eda100"}
+# Paleta categorica (misma que la de las skill de dataviz: azul, verde, magenta, amarillo),
+# indexada por la etiqueta de asiento del paper (1-4), no por el objeto Zemax.
+COLORS_BY_SEAT = {1: "#2a78d6", 2: "#008300", 3: "#e87ba4", 4: "#eda100"}
+COLORS = {rx: COLORS_BY_SEAT[seat_label_map[rx]] for rx in RX_IDXS}
 COLOR_TH = "#e34948"
 COLOR_POUT1 = "#2a78d6"
 COLOR_POUT2 = "#e34948"
@@ -53,7 +58,7 @@ fig, ax = plt.subplots(figsize=(9, 5), dpi=200)
 for rx in RX_IDXS:
     y = [r["sinr_db"][str(rx)] for r in rows]
     ax.plot(fovs, y, marker="o", markersize=5, linewidth=2, color=COLORS[rx],
-            label=f"Asiento {rx}")
+            label=f"Asiento {seat_label_map[rx]}")
 ax.axhline(gamma_th2_dB, color=COLOR_TH, linestyle="--", linewidth=1.5,
            label=f"$\\gamma_{{th,2}}$ Servicio Objetivo = {gamma_th2_dB:.2f} dB")
 ax.set_xlabel("FOV del receptor (grados)")
@@ -86,7 +91,7 @@ fig.savefig(os.path.join(_OUT_DIR, "pout_vs_fov.png"), bbox_inches="tight")
 plt.close(fig)
 
 # ---------- Tabla 1 (imagen): SINR por asiento y FOV ----------
-col_labels = ["FOV (°)"] + [f"Asiento {rx}\n(dB)" for rx in RX_IDXS] + ["Promedio\n(dB)", "Mínimo\n(dB)"]
+col_labels = ["FOV (°)"] + [f"Asiento {seat_label_map[rx]}\n(dB)" for rx in RX_IDXS] + ["Promedio\n(dB)", "Mínimo\n(dB)"]
 cell_text = []
 for r in rows:
     fila = [f"{int(r['fov_deg'])}"] + [f"{r['sinr_db'][str(rx)]:.2f}" for rx in RX_IDXS] + \
@@ -107,6 +112,8 @@ for (row_i, col_i), cell in tabla.get_celld().items():
     elif row_i % 2 == 0:
         cell.set_facecolor("#f7f6f3")
 ax.set_title("Tabla 1 — SINR por asiento y FOV (dB)", fontsize=12, pad=14, loc="left", weight="bold")
+mapeo_txt = "  ·  ".join(f"Asiento {seat_label_map[rx]} = detector Zemax obj.{rx}" for rx in RX_IDXS)
+fig.text(0.01, -0.02, f"Mapeo: {mapeo_txt} (ver mapeo_asientos.csv)", fontsize=7.5, color="#898781")
 fig.tight_layout()
 fig.savefig(os.path.join(_OUT_DIR, "tabla_sinr_por_fov.png"), bbox_inches="tight")
 plt.close(fig)
@@ -133,6 +140,7 @@ for (row_i, col_i), cell in tabla2.get_celld().items():
     elif row_i % 2 == 0:
         cell.set_facecolor("#f7f6f3")
 ax.set_title("Tabla 2 — Probabilidad de Outage por FOV", fontsize=12, pad=14, loc="left", weight="bold")
+fig.text(0.01, -0.02, "Pout estimada como fraccion de los 4 asientos (ver mapeo_asientos.csv) bajo cada umbral", fontsize=7.5, color="#898781")
 fig.tight_layout()
 fig.savefig(os.path.join(_OUT_DIR, "tabla_pout_por_fov.png"), bbox_inches="tight")
 plt.close(fig)
