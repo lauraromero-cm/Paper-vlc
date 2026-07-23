@@ -1,0 +1,9 @@
+Umbral,Criterio,Formula,Parametros,Valor (lineal),Valor (dB)
+"γth,1
+Servicio Mínimo","Capacidad de Shannon-Hartley:
+R ≥ Rmin = 5.0 Mbps",γth = 2^(Rmin/B) − 1,"Rmin = 5.0 Mbps
+B = 10.0 MHz",0.4142,-3.83
+"γth,2
+Servicio Objetivo","BER objetivo, modulación OOK:
+BER ≤ 1e-06","BER = Q(√γth)
+⇒ γth = [Q⁻¹(BER)]²",BER_max = 1e-06,22.5950,13.54
