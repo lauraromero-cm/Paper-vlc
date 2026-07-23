@@ -1,0 +1,56 @@
+[
+  {
+    "fov_deg": 5.0,
+    "avg_SINR_dB": 19.19125864861437,
+    "outage_minimo": false,
+    "outage_objetivo": false
+  },
+  {
+    "fov_deg": 10.0,
+    "avg_SINR_dB": 19.256833901495682,
+    "outage_minimo": false,
+    "outage_objetivo": false
+  },
+  {
+    "fov_deg": 20.0,
+    "avg_SINR_dB": 19.230136263923058,
+    "outage_minimo": false,
+    "outage_objetivo": false
+  },
+  {
+    "fov_deg": 30.0,
+    "avg_SINR_dB": 19.225547353009894,
+    "outage_minimo": false,
+    "outage_objetivo": false
+  },
+  {
+    "fov_deg": 40.0,
+    "avg_SINR_dB": 19.227619121520267,
+    "outage_minimo": false,
+    "outage_objetivo": false
+  },
+  {
+    "fov_deg": 50.0,
+    "avg_SINR_dB": 19.22276015577712,
+    "outage_minimo": false,
+    "outage_objetivo": false
+  },
+  {
+    "fov_deg": 60.0,
+    "avg_SINR_dB": 19.17904389577117,
+    "outage_minimo": false,
+    "outage_objetivo": false
+  },
+  {
+    "fov_deg": 70.0,
+    "avg_SINR_dB": 19.27160371225915,
+    "outage_minimo": false,
+    "outage_objetivo": false
+  },
+  {
+    "fov_deg": 80.0,
+    "avg_SINR_dB": 19.27423283746147,
+    "outage_minimo": false,
+    "outage_objetivo": false
+  }
+]

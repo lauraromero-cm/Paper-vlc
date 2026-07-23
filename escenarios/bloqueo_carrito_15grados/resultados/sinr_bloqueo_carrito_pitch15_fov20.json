@@ -1,0 +1,98 @@
+{
+  "escenario": "bloqueo_carrito",
+  "timestamp": "2026-07-22T21:23:10.852381",
+  "parametros": {
+    "pitch_deg": 15.0,
+    "fov_deg": 20.0,
+    "rayos_analisis_por_fuente": 1000000,
+    "Popt_W": 2.0,
+    "bandwidth_Hz": 10000000.0,
+    "temperatura_K": 300.0,
+    "R_min_bps": 5000000.0,
+    "BER_max": 1e-06,
+    "concentrador_indice_refraccion": 1.5,
+    "concentrador_ganancia_g": 19.234422383429322
+  },
+  "gamma_th1_servicio_minimo": 0.41421356237309515,
+  "gamma_th2_servicio_objetivo": 22.59504265971009,
+  "Pr_matrix_W": {
+    "2": {
+      "6": 0.020911999947202276,
+      "7": 0.0014619999963088048,
+      "8": 0.00021599999945465242,
+      "9": 9.199999976772233e-05
+    },
+    "3": {
+      "6": 0.0030679999922540446,
+      "7": 0.020903999947222474,
+      "8": 8.399999978792039e-05,
+      "9": 4.5999999883861165e-05
+    },
+    "4": {
+      "6": 3.599999990910874e-05,
+      "7": 4.399999988891068e-05,
+      "8": 0.02096999994705584,
+      "9": 0.0030599999922742427
+    },
+    "5": {
+      "6": 3.799999990405922e-05,
+      "7": 2.999999992425728e-05,
+      "8": 0.0014759999962734582,
+      "9": 0.02097599994704069
+    }
+  },
+  "resultados_por_asiento": [
+    {
+      "detector": 6,
+      "tx_propio": 2,
+      "Pr_signal_sin_concentrador_W": 0.020911999947202276,
+      "Pr_interference_sin_concentrador_W": 0.0031419999920672126,
+      "Pr_signal_W": 0.4022302398667403,
+      "Pr_interference_W": 0.06043455497615235,
+      "sigma2": 6.671436578572486e-13,
+      "SINR": 44.297455310257135,
+      "SINR_dB": 16.4637877867328,
+      "outage_servicio_minimo": false,
+      "outage_servicio_objetivo": false
+    },
+    {
+      "detector": 7,
+      "tx_propio": 3,
+      "Pr_signal_sin_concentrador_W": 0.020903999947222474,
+      "Pr_interference_sin_concentrador_W": 0.0015359999961219728,
+      "Pr_signal_W": 0.40207636448806133,
+      "Pr_interference_W": 0.029544072706355826,
+      "sigma2": 6.223789678595148e-13,
+      "SINR": 185.21508723844795,
+      "SINR_dB": 22.676763605183197,
+      "outage_servicio_minimo": false,
+      "outage_servicio_objetivo": false
+    },
+    {
+      "detector": 8,
+      "tx_propio": 4,
+      "Pr_signal_sin_concentrador_W": 0.02096999994705584,
+      "Pr_interference_sin_concentrador_W": 0.001775999995516031,
+      "Pr_signal_W": 0.40334583636216254,
+      "Pr_interference_W": 0.034160334066723926,
+      "sigma2": 6.308659536955162e-13,
+      "SINR": 139.4154602742552,
+      "SINR_dB": 21.443109368860732,
+      "outage_servicio_minimo": false,
+      "outage_servicio_objetivo": false
+    },
+    {
+      "detector": 9,
+      "tx_propio": 5,
+      "Pr_signal_sin_concentrador_W": 0.02097599994704069,
+      "Pr_interference_sin_concentrador_W": 0.003197999991925826,
+      "Pr_signal_W": 0.40346124289617175,
+      "Pr_interference_W": 0.0615116826269049,
+      "sigma2": 6.70471887596857e-13,
+      "SINR": 43.021785388751205,
+      "SINR_dB": 16.336884294915503,
+      "outage_servicio_minimo": false,
+      "outage_servicio_objetivo": false
+    }
+  ]
+}
