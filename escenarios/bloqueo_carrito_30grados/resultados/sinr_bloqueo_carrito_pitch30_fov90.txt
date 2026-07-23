@@ -1,0 +1,19 @@
+Escenario: bloqueo_carrito, pitch=30.0 deg, FOV=90.0 deg
+Generado: 2026-07-22T23:07:16.844234
+
+gamma_th,1 (Servicio Minimo) = 0.4142 (-3.83 dB)
+gamma_th,2 (Servicio Objetivo) = 22.5950 (13.54 dB)
+Ganancia del concentrador g(FOV=90.0 deg, n=1.5) = 2.2500
+
+Matriz Pr[Tx][Rx] SIN concentrador (mW):
+Tx\Rx         6         7         8         9
+Tx  2   18.8840    0.5460    0.2880    0.1160
+Tx  3    3.5900   18.8460    0.1240    0.0580
+Tx  4    0.1380    0.0780   18.8200    3.5720
+Tx  5    0.0820    0.0300    0.5220   18.8140
+
+SINR por asiento:
+Detector 6 (Tx propio 2): Pr_signal=42.4890 mW  Pr_interference=8.5725 mW  SINR=24.5662 (13.90 dB)  | Outage minimo: no  | Outage objetivo: no
+Detector 7 (Tx propio 3): Pr_signal=42.4035 mW  Pr_interference=1.4715 mW  SINR=830.3913 (29.19 dB)  | Outage minimo: no  | Outage objetivo: no
+Detector 8 (Tx propio 4): Pr_signal=42.3450 mW  Pr_interference=2.1015 mW  SINR=406.0182 (26.09 dB)  | Outage minimo: no  | Outage objetivo: no
+Detector 9 (Tx propio 5): Pr_signal=42.3315 mW  Pr_interference=8.4285 mW  SINR=25.2247 (14.02 dB)  | Outage minimo: no  | Outage objetivo: no
