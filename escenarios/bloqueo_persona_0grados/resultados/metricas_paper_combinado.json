@@ -1,0 +1,160 @@
+{
+  "seat_label_map": {
+    "6": 1,
+    "7": 2,
+    "8": 3,
+    "9": 4
+  },
+  "rows": [
+    {
+      "fov_deg": 5.0,
+      "gamma_th1_dB": -3.82775685337863,
+      "gamma_th2_dB": 13.540131656211575,
+      "sinr_db": {
+        "6": -62.19831726051643,
+        "7": 48.6649926213711,
+        "8": 18.839960760490033,
+        "9": 19.032893761733874
+      },
+      "sinr_prom_dB": 6.084882470769643,
+      "sinr_min_dB": -62.19831726051643,
+      "Pout_servicio_minimo": 0.25,
+      "Pout_servicio_objetivo": 0.25
+    },
+    {
+      "fov_deg": 10.0,
+      "gamma_th1_dB": -3.82775685337863,
+      "gamma_th2_dB": 13.540131656211575,
+      "sinr_db": {
+        "6": -Infinity,
+        "7": 49.092082180682894,
+        "8": 18.91539896486052,
+        "9": 19.02096544832641
+      },
+      "sinr_prom_dB": -Infinity,
+      "sinr_min_dB": -Infinity,
+      "Pout_servicio_minimo": 0.25,
+      "Pout_servicio_objetivo": 0.25
+    },
+    {
+      "fov_deg": 20.0,
+      "gamma_th1_dB": -3.82775685337863,
+      "gamma_th2_dB": 13.540131656211575,
+      "sinr_db": {
+        "6": -56.089603782751354,
+        "7": 49.566512377044056,
+        "8": 19.032179245702856,
+        "9": 18.913271474606876
+      },
+      "sinr_prom_dB": 7.855589828650609,
+      "sinr_min_dB": -56.089603782751354,
+      "Pout_servicio_minimo": 0.25,
+      "Pout_servicio_objetivo": 0.25
+    },
+    {
+      "fov_deg": 30.0,
+      "gamma_th1_dB": -3.82775685337863,
+      "gamma_th2_dB": 13.540131656211575,
+      "sinr_db": {
+        "6": -Infinity,
+        "7": 48.87206669782179,
+        "8": 18.887886388380846,
+        "9": 18.971172423783138
+      },
+      "sinr_prom_dB": -Infinity,
+      "sinr_min_dB": -Infinity,
+      "Pout_servicio_minimo": 0.25,
+      "Pout_servicio_objetivo": 0.25
+    },
+    {
+      "fov_deg": 40.0,
+      "gamma_th1_dB": -3.82775685337863,
+      "gamma_th2_dB": 13.540131656211575,
+      "sinr_db": {
+        "6": -Infinity,
+        "7": 50.59354861368277,
+        "8": 18.875083671961615,
+        "9": 19.028930513629575
+      },
+      "sinr_prom_dB": -Infinity,
+      "sinr_min_dB": -Infinity,
+      "Pout_servicio_minimo": 0.25,
+      "Pout_servicio_objetivo": 0.25
+    },
+    {
+      "fov_deg": 50.0,
+      "gamma_th1_dB": -3.82775685337863,
+      "gamma_th2_dB": 13.540131656211575,
+      "sinr_db": {
+        "6": -62.30555183101305,
+        "7": 54.25369628075529,
+        "8": 18.997105093424814,
+        "9": 19.068856982760003
+      },
+      "sinr_prom_dB": 7.5035266314817655,
+      "sinr_min_dB": -62.30555183101305,
+      "Pout_servicio_minimo": 0.25,
+      "Pout_servicio_objetivo": 0.25
+    },
+    {
+      "fov_deg": 60.0,
+      "gamma_th1_dB": -3.82775685337863,
+      "gamma_th2_dB": 13.540131656211575,
+      "sinr_db": {
+        "6": -Infinity,
+        "7": 48.66255529032986,
+        "8": 18.854227240774513,
+        "9": 19.0098612876423
+      },
+      "sinr_prom_dB": -Infinity,
+      "sinr_min_dB": -Infinity,
+      "Pout_servicio_minimo": 0.25,
+      "Pout_servicio_objetivo": 0.25
+    },
+    {
+      "fov_deg": 70.0,
+      "gamma_th1_dB": -3.82775685337863,
+      "gamma_th2_dB": 13.540131656211575,
+      "sinr_db": {
+        "6": -Infinity,
+        "7": 48.2275459237963,
+        "8": 18.89687258575619,
+        "9": 19.17418460571326
+      },
+      "sinr_prom_dB": -Infinity,
+      "sinr_min_dB": -Infinity,
+      "Pout_servicio_minimo": 0.25,
+      "Pout_servicio_objetivo": 0.25
+    },
+    {
+      "fov_deg": 80.0,
+      "gamma_th1_dB": -3.82775685337863,
+      "gamma_th2_dB": 13.540131656211575,
+      "sinr_db": {
+        "6": -Infinity,
+        "7": 50.861248932432815,
+        "8": 18.914214077926697,
+        "9": 19.055993330937582
+      },
+      "sinr_prom_dB": -Infinity,
+      "sinr_min_dB": -Infinity,
+      "Pout_servicio_minimo": 0.25,
+      "Pout_servicio_objetivo": 0.25
+    },
+    {
+      "fov_deg": 90.0,
+      "gamma_th1_dB": -3.82775685337863,
+      "gamma_th2_dB": 13.540131656211575,
+      "sinr_db": {
+        "6": -Infinity,
+        "7": 50.09095147970282,
+        "8": 18.98763982225287,
+        "9": 19.06403600859391
+      },
+      "sinr_prom_dB": -Infinity,
+      "sinr_min_dB": -Infinity,
+      "Pout_servicio_minimo": 0.25,
+      "Pout_servicio_objetivo": 0.25
+    }
+  ]
+}
