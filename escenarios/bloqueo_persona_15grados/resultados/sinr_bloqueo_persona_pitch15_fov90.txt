@@ -1,0 +1,19 @@
+Escenario: bloqueo_persona, pitch=15.0 deg, FOV=90.0 deg
+Generado: 2026-07-24T01:07:01.708419
+
+gamma_th,1 (Servicio Minimo) = 0.4142 (-3.83 dB)
+gamma_th,2 (Servicio Objetivo) = 22.5950 (13.54 dB)
+Ganancia del concentrador g(FOV=90.0 deg, n=1.5) = 2.2500
+
+Matriz Pr[Tx][Rx] SIN concentrador (mW):
+Tx\Rx         6         7         8         9
+Tx  2    0.0020    0.0000    0.1400    0.0700
+Tx  3    2.9620   20.9720    0.0220    0.0040
+Tx  4    0.0900    0.0520   20.9420    3.0420
+Tx  5    0.0460    0.0340    1.4380   20.9320
+
+SINR por asiento:
+Detector 6 (Tx propio 2): Pr_signal=0.0045 mW  Pr_interference=6.9705 mW  SINR=0.0000 (-63.80 dB)  | Outage minimo: SI  | Outage objetivo: SI
+Detector 7 (Tx propio 3): Pr_signal=47.1870 mW  Pr_interference=0.1935 mW  SINR=59467.3906 (47.74 dB)  | Outage minimo: no  | Outage objetivo: no
+Detector 8 (Tx propio 4): Pr_signal=47.1195 mW  Pr_interference=3.6000 mW  SINR=171.3154 (22.34 dB)  | Outage minimo: no  | Outage objetivo: no
+Detector 9 (Tx propio 5): Pr_signal=47.0970 mW  Pr_interference=7.0110 mW  SINR=45.1260 (16.54 dB)  | Outage minimo: no  | Outage objetivo: no
