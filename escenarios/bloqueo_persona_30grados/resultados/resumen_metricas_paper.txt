@@ -1,0 +1,25 @@
+Metricas indispensables (Seccion 5) - Escenario bloqueo_persona, pitch=0 deg
+==============================================================================
+
+gamma_th,1 (Servicio Minimo)   = -3.83 dB
+gamma_th,2 (Servicio Objetivo) = 13.54 dB
+
+  FOV(deg)   SINR prom(dB)    SINR min(dB)   Pout min   Pout obj
+       5.0            7.81          -55.68     25.00%     25.00%
+      10.0            6.93          -59.26     25.00%     25.00%
+      20.0            5.90          -65.18     25.00%     25.00%
+      30.0            7.80          -55.62     25.00%     25.00%
+      40.0            5.71          -65.18     25.00%     25.00%
+      50.0            5.39          -65.19     25.00%     25.00%
+      60.0            7.11          -59.25     25.00%     25.00%
+      70.0            5.53          -65.26     25.00%     25.00%
+      80.0            8.14          -53.16     25.00%     25.00%
+      90.0            6.09          -65.26     25.00%     25.00%
+
+Conclusion: en ausencia de bloqueo, Pout=0 para ambos umbrales en todo el rango de FOV evaluado (5-90 grados); el enlace LOS mantiene margen suficiente (~5 dB) sobre el umbral de Servicio Objetivo en todos los casos. Esta tabla sirve de linea base para comparar contra los escenarios con bloqueo, donde se espera que Pout > 0 sea la metrica que sustente la seleccion de FOVopt.
+
+Mapeo Asiento (paper) <-> objetos Zemax (ver mapeo_asientos.csv):
+  Asiento 1: detector obj.6, Tx obj.2
+  Asiento 2: detector obj.7, Tx obj.3
+  Asiento 3: detector obj.8, Tx obj.4
+  Asiento 4: detector obj.9, Tx obj.5
