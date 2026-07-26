@@ -13,7 +13,9 @@ import noise_model as nm
 
 _THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 _OUT_DIR = os.path.join(os.path.dirname(_THIS_DIR), "resultados_generales")
+_CSV_DIR = os.path.join(_OUT_DIR, "csv_backup")
 os.makedirs(_OUT_DIR, exist_ok=True)
+os.makedirs(_CSV_DIR, exist_ok=True)
 
 gamma_th1 = nm.sinr_threshold_from_shannon(nm.R_MIN_BPS, nm.BANDWIDTH_HZ)
 gamma_th2 = nm.sinr_threshold_from_ber(nm.BER_MAX)
@@ -40,7 +42,7 @@ rows = [
 ]
 
 # ---------- CSV ----------
-csv_path = os.path.join(_OUT_DIR, "tabla_umbrales_sinr.csv")
+csv_path = os.path.join(_CSV_DIR, "tabla_umbrales_sinr.csv")
 with open(csv_path, "w", newline="", encoding="utf-8") as f:
     w = csv.writer(f)
     w.writerow(["Umbral", "Criterio", "Formula", "Parametros", "Valor (lineal)", "Valor (dB)"])

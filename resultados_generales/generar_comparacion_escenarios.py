@@ -22,7 +22,9 @@ import matplotlib.pyplot as plt
 _THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 _PROJECT_ROOT = os.path.dirname(_THIS_DIR)
 _OUT_DIR = _THIS_DIR
+_CSV_DIR = os.path.join(_THIS_DIR, "csv_backup")
 os.makedirs(_OUT_DIR, exist_ok=True)
+os.makedirs(_CSV_DIR, exist_ok=True)
 
 ESCENARIOS = ["sin_bloqueo", "bloqueo_carrito", "bloqueo_persona"]
 ESCENARIO_LABEL = {"sin_bloqueo": "Sin bloqueo", "bloqueo_carrito": "Bloqueo carrito",
@@ -95,7 +97,7 @@ for p in PITCHES:
         "spread_dB": max(sinr_min_vals) - min(sinr_min_vals),
     })
 
-csv_path = os.path.join(_OUT_DIR, "tabla_fovopt.csv")
+csv_path = os.path.join(_CSV_DIR, "tabla_fovopt.csv")
 with open(csv_path, "w", newline="", encoding="utf-8") as f:
     w = csv.writer(f)
     w.writerow(["Pitch (deg)", "FOVopt (deg)", "SINR minimo en FOVopt (dB)", "SINR promedio en FOVopt (dB)",
@@ -145,13 +147,37 @@ for esc in ESCENARIOS:
         pout_rows.append({"escenario": esc, "pitch_deg": p,
                            "pout_prom_minimo_pct": pout_prom_min, "pout_prom_objetivo_pct": pout_prom_obj})
 
-csv_path2 = os.path.join(_OUT_DIR, "tabla_pout_comparativa.csv")
+csv_path2 = os.path.join(_CSV_DIR, "tabla_pout_comparativa.csv")
 with open(csv_path2, "w", newline="", encoding="utf-8") as f:
     w = csv.writer(f)
     w.writerow(["Escenario", "Pitch (deg)", "Pout promedio Serv. Minimo (%)", "Pout promedio Serv. Objetivo (%)"])
     for r in pout_rows:
         w.writerow([ESCENARIO_LABEL[r["escenario"]], r["pitch_deg"],
                      f"{r['pout_prom_minimo_pct']:.1f}", f"{r['pout_prom_objetivo_pct']:.1f}"])
+
+# ---------- Tabla (imagen): Pout comparativa por escenario y pitch ----------
+col_labels_pout = ["Escenario", "Pitch (°)", "Pout Serv. Mínimo\n(%)", "Pout Serv. Objetivo\n(%)"]
+cell_text_pout = [[ESCENARIO_LABEL[r["escenario"]], f"{r['pitch_deg']}",
+                    f"{r['pout_prom_minimo_pct']:.1f}%", f"{r['pout_prom_objetivo_pct']:.1f}%"] for r in pout_rows]
+
+fig, ax = plt.subplots(figsize=(8, 0.42 * (len(pout_rows) + 1) + 0.6), dpi=200)
+ax.axis("off")
+tabla_pout = ax.table(cellText=cell_text_pout, colLabels=col_labels_pout, cellLoc="center", loc="center")
+tabla_pout.auto_set_font_size(False)
+tabla_pout.set_fontsize(9.5)
+tabla_pout.scale(1, 1.6)
+for (row_i, col_i), cell in tabla_pout.get_celld().items():
+    cell.set_edgecolor("#e1e0d9")
+    if row_i == 0:
+        cell.set_facecolor("#f2f1ee")
+        cell.set_text_props(weight="bold", color="#0b0b0b")
+    elif row_i % 2 == 0:
+        cell.set_facecolor("#f7f6f3")
+ax.set_title("Probabilidad de Outage comparada entre escenarios (promedio sobre FOV 5°-90°)",
+             fontsize=12, pad=14, loc="left", weight="bold")
+fig.tight_layout()
+fig.savefig(os.path.join(_OUT_DIR, "tabla_pout_comparativa.png"), bbox_inches="tight")
+plt.close(fig)
 
 fig, ax = plt.subplots(figsize=(9, 5), dpi=200)
 x = range(len(PITCHES))
