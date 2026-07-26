@@ -1,0 +1,10 @@
+Escenario,Pitch (deg),Pout promedio Serv. Minimo (%),Pout promedio Serv. Objetivo (%)
+Sin bloqueo,0,0.0,0.0
+Sin bloqueo,15,0.0,0.0
+Sin bloqueo,30,0.0,0.0
+Bloqueo carrito,0,0.0,0.0
+Bloqueo carrito,15,0.0,0.0
+Bloqueo carrito,30,0.0,0.0
+Bloqueo persona,0,25.0,25.0
+Bloqueo persona,15,25.0,25.0
+Bloqueo persona,30,25.0,25.0

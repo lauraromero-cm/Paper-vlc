@@ -1,0 +1,4 @@
+Pitch (deg),FOVopt (deg),SINR minimo en FOVopt (dB),SINR promedio en FOVopt (dB),Variacion SINR minimo en todo el barrido 5-90 (dB)
+0,90,18.42,18.70,0.24
+15,90,16.33,19.02,0.15
+30,90,13.76,20.97,0.17
