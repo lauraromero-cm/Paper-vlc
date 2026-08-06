@@ -79,6 +79,27 @@ def get_global_z_axis(TheNCE, obj_index):
     return (r13, r23, r33), (xo, yo, zo)
 
 
+def incidence_angle_deg(L, M, N, normal):
+    """Angulo (0-90 grados) entre la direccion de un rayo (L,M,N, coseno-director
+    en coordenadas globales, tal como vienen del ZRD) y la normal del detector
+    (tambien en globales, ver get_global_z_axis). Se usa valor absoluto del
+    producto punto porque el signo de la normal (que cara "mira") es ambiguo
+    y no importa para un filtro de FOV simetrico."""
+    import math
+    dot = L * normal[0] + M * normal[1] + N * normal[2]
+    dot = max(-1.0, min(1.0, abs(dot)))
+    return math.degrees(math.acos(dot))
+
+
+def filter_hits_by_fov(hits, normal, fov_deg):
+    """Filtra una lista de hits (tal como los devuelve read_zrd_hits_on_objects)
+    dejando solo los que caen dentro del semiangulo de aceptancia fov_deg,
+    calculado a partir de L,M,N (indices 3,4,5 de cada tupla de hit) y la
+    normal del detector. Esto reemplaza el filtro nativo de Zemax (Par12-15),
+    que NO recorta rayos en modo 'position space' (ver validacion_fov_diff)."""
+    return [h for h in hits if incidence_angle_deg(h[3], h[4], h[5], normal) <= fov_deg]
+
+
 def run_nsc_trace(TheSystem, save_rays_file=None, zrd_format=None, scatter=True, split=False, polarization=False):
     """save_rays_file, si se da, DEBE ser solo el nombre de archivo (sin carpeta):
     Zemax decide donde lo guarda (ver find_zrd_file para localizarlo despues)."""

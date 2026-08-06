@@ -35,11 +35,49 @@ FET_TRANSCONDUCTANCE = 0.030    # gm, S (30 mS)
 NOISE_BW_FACTOR_I2 = 0.562      # I2, integral de Personick (pulso raised-cosine)
 NOISE_BW_FACTOR_I3 = 0.0868     # I3, integral de Personick (pulso raised-cosine)
 
-# Ruido de fondo (luz ambiental): con el filtro optico de banda estrecha
-# especificado en la Tabla 1, se asume que el ruido shot inducido por luz
-# ambiental es despreciable frente al de la propia senal (supuesto razonable
-# dado el filtrado espectral explicito del sistema).
-NEGLECT_BACKGROUND_SHOT_NOISE = True
+# Ruido de fondo (luz ambiental): incluso con el filtro optico de banda
+# estrecha, un fotodiodo real sigue captando algo de luz de fondo (cabina
+# iluminada, luz solar por las ventanillas, etc.), que produce ruido shot
+# adicional independiente de la senal util. Se modela con la misma forma
+# clasica de Komine & Nakagawa (2004): sigma^2_bg = 2*q*I_bg*I2*B, usando una
+# corriente de fondo I_bg tipica de literatura VLC con filtro optico (mucho
+# menor que el caso sin filtro/luz solar directa ~5100 uA de Komine&Nakagawa;
+# valor AJUSTABLE, debe justificarse con datos reales del filtro/fotodiodo).
+BACKGROUND_CURRENT_A = 200e-6   # A (I_bg, supuesto tipico VLC indoor con filtro)
+
+
+def background_shot_noise_variance(B=None, I_bg=BACKGROUND_CURRENT_A):
+    """sigma^2_bg = 2*q*I_bg*I2*B: ruido shot inducido por luz de fondo,
+    independiente de la potencia de la senal util (a diferencia del shot
+    noise de la senal, que si depende de Pr)."""
+    if B is None:
+        B = BANDWIDTH_HZ
+    return 2.0 * Q_ELECTRON * I_bg * NOISE_BW_FACTOR_I2 * B
+
+
+# Corriente oscura del fotodiodo PIN: corriente de fuga que fluye aun sin luz
+# incidente, presente en cualquier fotodiodo real. Genera ruido shot propio,
+# independiente de la senal y del fondo. Valor tipico de literatura VLC para
+# un fotodiodo PIN de silicio (supuesto, ajustable con datasheet real).
+DARK_CURRENT_A = 10e-9   # A (I_dark, tipico ~1-50 nA para PIN de Si)
+
+
+def dark_current_shot_noise_variance(B=None, I_dark=DARK_CURRENT_A):
+    """sigma^2_dark = 2*q*I_dark*I2*B: ruido shot de la corriente oscura del
+    fotodiodo (siempre presente, incluso sin ninguna luz incidente)."""
+    if B is None:
+        B = BANDWIDTH_HZ
+    return 2.0 * Q_ELECTRON * I_dark * NOISE_BW_FACTOR_I2 * B
+
+
+# Transmision pico del filtro optico de banda estrecha (Tabla 1: "filtro
+# optico de banda estrecha"). Ningun filtro real transmite el 100% en su
+# banda de paso; hay perdidas por reflexion/absorcion del recubrimiento.
+# Se aplica como perdida multiplicativa sobre TODA la potencia optica util
+# que llega al fotodiodo (senal e interferencia), antes de convertir a
+# fotocorriente. Valor tipico de literatura para un filtro interferencial
+# de banda estrecha (supuesto, ajustable con datasheet real del filtro).
+FILTER_TRANSMISSION = 0.90
 
 # Ganancia del concentrador optico (Tabla 1: "Implementacion FOV: Concentrador
 # optico"). Un concentrador real (tipo CPC) no solo limita el angulo de
@@ -50,12 +88,25 @@ NEGLECT_BACKGROUND_SHOT_NOISE = True
 # literatura VLC para un CPC de plastico/acrilico (supuesto, ajustable).
 CONCENTRATOR_REFRACTIVE_INDEX = 1.5
 
+# La formula de Kahn & Barry es para un concentrador IDEAL (sin perdidas).
+# Un CPC real nunca transmite el 100%: hay perdidas por reflexion interna,
+# absorcion del material y recubrimiento AR imperfecto. eta_concentrador es
+# un valor tipico de literatura VLC para un CPC real (supuesto, ajustable).
+CONCENTRATOR_EFFICIENCY = 0.85
 
-def concentrator_gain(fov_deg, n=CONCENTRATOR_REFRACTIVE_INDEX):
-    """g(FOV) = n^2 / sin^2(FOV). FOV=90 deg da g=n^2 (sin concentracion angular,
-    solo la ganancia base del medio); FOV chico da ganancias grandes."""
+# Por debajo de este semiangulo, un CPC real se vuelve impracticamente largo
+# de fabricar para la ganancia que exigiria la formula ideal (Kahn & Barry
+# discuten este limite practico) -- FOV menores se reportan solo como
+# referencia idealizada, no como diseno realizable.
+FOV_MIN_PRACTICO_DEG = 10.0
+
+
+def concentrator_gain(fov_deg, n=CONCENTRATOR_REFRACTIVE_INDEX, eta=CONCENTRATOR_EFFICIENCY):
+    """g(FOV) = eta * n^2 / sin^2(FOV). FOV=90 deg da g=eta*n^2 (sin concentracion
+    angular, solo la ganancia base del medio con perdidas de transmision);
+    FOV chico da ganancias grandes (concentrador ideal con perdidas reales)."""
     fov_rad = math.radians(fov_deg)
-    return (n ** 2) / (math.sin(fov_rad) ** 2)
+    return eta * (n ** 2) / (math.sin(fov_rad) ** 2)
 
 
 def shot_noise_variance(Pr_total_W, B=BANDWIDTH_HZ, R=RESPONSIVITY):
@@ -73,17 +124,24 @@ def thermal_noise_variance(B=BANDWIDTH_HZ, A=DETECTOR_AREA, T=TEMPERATURE_K):
     return term_R + term_FET
 
 
-def total_noise_variance(Pr_total_W, B=BANDWIDTH_HZ, A=DETECTOR_AREA, T=TEMPERATURE_K, R=RESPONSIVITY):
-    return shot_noise_variance(Pr_total_W, B, R) + thermal_noise_variance(B, A, T)
+def total_noise_variance(Pr_total_W, B=BANDWIDTH_HZ, A=DETECTOR_AREA, T=TEMPERATURE_K, R=RESPONSIVITY,
+                          I_bg=BACKGROUND_CURRENT_A, I_dark=DARK_CURRENT_A):
+    return shot_noise_variance(Pr_total_W, B, R) + thermal_noise_variance(B, A, T) \
+        + background_shot_noise_variance(B, I_bg) + dark_current_shot_noise_variance(B, I_dark)
 
 
 def compute_sinr(Pr_signal_W, Pr_interference_W, B=BANDWIDTH_HZ, A=DETECTOR_AREA,
-                  T=TEMPERATURE_K, R=RESPONSIVITY):
-    """SINR = (I_signal)^2 / [sigma^2 + (I_interference)^2], con I = R*Pr."""
-    I_signal = R * Pr_signal_W
-    I_interference = R * Pr_interference_W
-    Pr_total = Pr_signal_W + Pr_interference_W
-    sigma2 = total_noise_variance(Pr_total, B, A, T, R)
+                  T=TEMPERATURE_K, R=RESPONSIVITY, T_filter=FILTER_TRANSMISSION):
+    """SINR = (I_signal)^2 / [sigma^2 + (I_interference)^2], con I = R*Pr.
+    T_filter atenua la potencia optica util (senal e interferencia) ANTES de
+    convertir a fotocorriente, modelando la transmision real (<100%) del
+    filtro optico de banda estrecha."""
+    Pr_signal_eff = Pr_signal_W * T_filter
+    Pr_interference_eff = Pr_interference_W * T_filter
+    I_signal = R * Pr_signal_eff
+    I_interference = R * Pr_interference_eff
+    Pr_total_eff = Pr_signal_eff + Pr_interference_eff
+    sigma2 = total_noise_variance(Pr_total_eff, B, A, T, R)
     sinr = (I_signal ** 2) / (sigma2 + I_interference ** 2)
     return sinr, sigma2, I_signal, I_interference
 
