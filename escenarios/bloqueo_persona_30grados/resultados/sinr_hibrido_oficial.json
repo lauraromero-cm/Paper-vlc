@@ -1,0 +1,499 @@
+{
+  "escenario": "bloqueo_persona_30grados",
+  "pitch_deg": 30.0,
+  "timestamp": "2026-08-12T17:39:06.083187",
+  "parametros": {
+    "rayos_analisis_por_fuente": 1000000,
+    "Popt_W": 2.0,
+    "gamma_th1_servicio_minimo_dB": -3.82775685337863,
+    "gamma_th2_servicio_objetivo_dB": 13.540131656211575
+  },
+  "filas": [
+    {
+      "fov_deg": 10.0,
+      "concentrador_g": 63.42507417576917,
+      "asientos": {
+        "6": {
+          "Pr_own_LOS_mW": 0.0,
+          "Pr_interf_LOS_mW": 0.761100888187635,
+          "Pr_DIFF_mW": 0.253700296062545,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": -Infinity,
+          "SINR_DIFF_dB": 71.85057568476554,
+          "SINR_hybrid_dB": 71.85057568476554,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        },
+        "7": {
+          "Pr_own_LOS_mW": 1.01480118425018,
+          "Pr_interf_LOS_mW": 0.0,
+          "Pr_DIFF_mW": 0.0,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": 80.03096089985148,
+          "SINR_DIFF_dB": -Infinity,
+          "SINR_hybrid_dB": 80.03096089985148,
+          "usa_DIFF": false,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        },
+        "8": {
+          "Pr_own_LOS_mW": 1.268501480312725,
+          "Pr_interf_LOS_mW": 0.8879510362189076,
+          "Pr_DIFF_mW": 0.253700296062545,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": 3.0980390936399638,
+          "SINR_DIFF_dB": 71.85057568476554,
+          "SINR_hybrid_dB": 71.85057568476554,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        },
+        "9": {
+          "Pr_own_LOS_mW": 1.7759020724378152,
+          "Pr_interf_LOS_mW": 0.3805504440938175,
+          "Pr_DIFF_mW": 0.0,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": 13.38013504165266,
+          "SINR_DIFF_dB": -Infinity,
+          "SINR_hybrid_dB": 13.38013504165266,
+          "usa_DIFF": false,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": true
+        }
+      }
+    },
+    {
+      "fov_deg": 20.0,
+      "concentrador_g": 16.34925902591492,
+      "asientos": {
+        "6": {
+          "Pr_own_LOS_mW": 0.0,
+          "Pr_interf_LOS_mW": 0.6212718414162064,
+          "Pr_DIFF_mW": 0.49047776953911026,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": -Infinity,
+          "SINR_DIFF_dB": 75.97576485806498,
+          "SINR_hybrid_dB": 75.97576485806498,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        },
+        "7": {
+          "Pr_own_LOS_mW": 18.67085376045547,
+          "Pr_interf_LOS_mW": 0.09809555390782207,
+          "Pr_DIFF_mW": 0.1307940718770961,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": 45.59022905895535,
+          "SINR_DIFF_dB": 67.23864722917648,
+          "SINR_hybrid_dB": 67.23864722917648,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        },
+        "8": {
+          "Pr_own_LOS_mW": 18.76894931436329,
+          "Pr_interf_LOS_mW": 0.5885733234469325,
+          "Pr_DIFF_mW": 0.3269851796927402,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": 30.072785798288088,
+          "SINR_DIFF_dB": 73.49349344074494,
+          "SINR_hybrid_dB": 73.49349344074494,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        },
+        "9": {
+          "Pr_own_LOS_mW": 18.93244190420966,
+          "Pr_interf_LOS_mW": 0.2615881437541922,
+          "Pr_DIFF_mW": 0.09809555390782207,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": 37.19176175706483,
+          "SINR_DIFF_dB": 65.10235271303429,
+          "SINR_hybrid_dB": 65.10235271303429,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        }
+      }
+    },
+    {
+      "fov_deg": 30.0,
+      "concentrador_g": 7.650000000000001,
+      "asientos": {
+        "6": {
+          "Pr_own_LOS_mW": 0.015299999961371217,
+          "Pr_interf_LOS_mW": 23.592599940434418,
+          "Pr_DIFF_mW": 0.4436999988797653,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": -63.761687475773286,
+          "SINR_DIFF_dB": 75.3780779002153,
+          "SINR_hybrid_dB": 75.3780779002153,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        },
+        "7": {
+          "Pr_own_LOS_mW": 71.63459981914002,
+          "Pr_interf_LOS_mW": 0.13769999965234095,
+          "Pr_DIFF_mW": 0.1835999995364546,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": 54.323647432951674,
+          "SINR_DIFF_dB": 69.65617970594602,
+          "SINR_hybrid_dB": 69.65617970594602,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        },
+        "8": {
+          "Pr_own_LOS_mW": 71.58869981925592,
+          "Pr_interf_LOS_mW": 0.6119999984548486,
+          "Pr_DIFF_mW": 0.5201999986866213,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": 41.36185442801082,
+          "SINR_DIFF_dB": 76.32188629520469,
+          "SINR_hybrid_dB": 76.32188629520469,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        },
+        "9": {
+          "Pr_own_LOS_mW": 71.72639981890826,
+          "Pr_interf_LOS_mW": 25.16849993645565,
+          "Pr_DIFF_mW": 0.12239999969096974,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": 9.096434009209759,
+          "SINR_DIFF_dB": 66.75271994495462,
+          "SINR_hybrid_dB": 66.75271994495462,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        }
+      }
+    },
+    {
+      "fov_deg": 40.0,
+      "concentrador_g": 4.628779046194557,
+      "asientos": {
+        "6": {
+          "Pr_own_LOS_mW": 0.009257558069016026,
+          "Pr_interf_LOS_mW": 15.432349301049717,
+          "Pr_DIFF_mW": 0.42584767117473726,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": -64.43871199882805,
+          "SINR_DIFF_dB": 75.13022390508695,
+          "SINR_hybrid_dB": 75.13022390508695,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        },
+        "7": {
+          "Pr_own_LOS_mW": 80.71664880375073,
+          "Pr_interf_LOS_mW": 0.15737848717327246,
+          "Pr_DIFF_mW": 0.15737848717327246,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": 54.20024254336279,
+          "SINR_DIFF_dB": 68.57187721807594,
+          "SINR_hybrid_dB": 68.57187721807594,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        },
+        "8": {
+          "Pr_own_LOS_mW": 80.7536790360268,
+          "Pr_interf_LOS_mW": 0.5647110422099777,
+          "Pr_DIFF_mW": 9.322360975499139,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": 43.10671195735088,
+          "SINR_DIFF_dB": 90.58499268559427,
+          "SINR_hybrid_dB": 90.58499268559427,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        },
+        "9": {
+          "Pr_own_LOS_mW": 80.7536790360268,
+          "Pr_interf_LOS_mW": 16.274787085330175,
+          "Pr_DIFF_mW": 0.07406046455212821,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": 13.912940022138045,
+          "SINR_DIFF_dB": 62.94825965000668,
+          "SINR_hybrid_dB": 62.94825965000668,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        }
+      }
+    },
+    {
+      "fov_deg": 50.0,
+      "concentrador_g": 3.259068665367533,
+      "asientos": {
+        "6": {
+          "Pr_own_LOS_mW": 0.006518137314278352,
+          "Pr_interf_LOS_mW": 11.028688335758972,
+          "Pr_DIFF_mW": 0.4236789254280929,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": -64.56800717725598,
+          "SINR_DIFF_dB": 75.09928665464587,
+          "SINR_hybrid_dB": 75.09928665464587,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        },
+        "7": {
+          "Pr_own_LOS_mW": 60.96413830044542,
+          "Pr_interf_LOS_mW": 0.1890259821140722,
+          "Pr_DIFF_mW": 0.14339902091412374,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": 50.170999653174334,
+          "SINR_DIFF_dB": 67.90577718968508,
+          "SINR_hybrid_dB": 67.90577718968508,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        },
+        "8": {
+          "Pr_own_LOS_mW": 60.938065751188304,
+          "Pr_interf_LOS_mW": 1.1732647165701031,
+          "Pr_DIFF_mW": 6.60287309936397,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": 34.30985153620446,
+          "SINR_DIFF_dB": 89.03565403141971,
+          "SINR_hybrid_dB": 89.03565403141971,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        },
+        "9": {
+          "Pr_own_LOS_mW": 60.905475064616915,
+          "Pr_interf_LOS_mW": 11.856491774672321,
+          "Pr_DIFF_mW": 1.2645186389700003,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": 14.21400259624365,
+          "SINR_DIFF_dB": 81.1746145837979,
+          "SINR_hybrid_dB": 81.1746145837979,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        }
+      }
+    },
+    {
+      "fov_deg": 60.0,
+      "concentrador_g": 2.5500000000000003,
+      "asientos": {
+        "6": {
+          "Pr_own_LOS_mW": 0.005099999987123739,
+          "Pr_interf_LOS_mW": 8.782199977827077,
+          "Pr_DIFF_mW": 0.3620999990857854,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": -64.72066294639126,
+          "SINR_DIFF_dB": 74.1342942024154,
+          "SINR_hybrid_dB": 74.1342942024154,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        },
+        "7": {
+          "Pr_own_LOS_mW": 47.78189987936231,
+          "Pr_interf_LOS_mW": 0.18869999952357833,
+          "Pr_DIFF_mW": 0.1478999996265884,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": 48.0697837385962,
+          "SINR_DIFF_dB": 68.12802666379396,
+          "SINR_hybrid_dB": 68.12802666379396,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        },
+        "8": {
+          "Pr_own_LOS_mW": 47.81249987928505,
+          "Pr_interf_LOS_mW": 0.974099997540634,
+          "Pr_DIFF_mW": 5.181599986917718,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": 33.81875640628871,
+          "SINR_DIFF_dB": 87.93517389967371,
+          "SINR_hybrid_dB": 87.93517389967371,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        },
+        "9": {
+          "Pr_own_LOS_mW": 47.802299879310794,
+          "Pr_interf_LOS_mW": 9.343199976410688,
+          "Pr_DIFF_mW": 0.9944999974891289,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": 14.17906293128576,
+          "SINR_DIFF_dB": 79.92420096799735,
+          "SINR_hybrid_dB": 79.92420096799735,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        }
+      }
+    },
+    {
+      "fov_deg": 70.0,
+      "concentrador_g": 2.165857158863307,
+      "asientos": {
+        "6": {
+          "Pr_own_LOS_mW": 0.004331714306790087,
+          "Pr_interf_LOS_mW": 7.5328511795079605,
+          "Pr_DIFF_mW": 0.3248785730092565,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": -64.80599164478647,
+          "SINR_DIFF_dB": 73.45251360870107,
+          "SINR_hybrid_dB": 73.45251360870107,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        },
+        "7": {
+          "Pr_own_LOS_mW": 40.640143626304585,
+          "Pr_interf_LOS_mW": 0.22524914395308449,
+          "Pr_DIFF_mW": 0.1256197148969125,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": 45.12581383591985,
+          "SINR_DIFF_dB": 66.94342565304854,
+          "SINR_hybrid_dB": 66.94342565304854,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        },
+        "8": {
+          "Pr_own_LOS_mW": 40.7224461981336,
+          "Pr_interf_LOS_mW": 0.9183234330394984,
+          "Pr_DIFF_mW": 4.409685164312307,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": 32.93676212710701,
+          "SINR_DIFF_dB": 87.19613077138686,
+          "SINR_hybrid_dB": 87.19613077138686,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        },
+        "9": {
+          "Pr_own_LOS_mW": 40.683460769372495,
+          "Pr_interf_LOS_mW": 7.9876811817209195,
+          "Pr_DIFF_mW": 0.8706745756648073,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": 14.139943317357124,
+          "SINR_DIFF_dB": 79.21399601186202,
+          "SINR_hybrid_dB": 79.21399601186202,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        }
+      }
+    },
+    {
+      "fov_deg": 80.0,
+      "concentrador_g": 1.9719619278905225,
+      "asientos": {
+        "6": {
+          "Pr_own_LOS_mW": 0.0039439238458235945,
+          "Pr_interf_LOS_mW": 7.193717094782237,
+          "Pr_DIFF_mW": 0.31156998382006396,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": -65.22049668481144,
+          "SINR_DIFF_dB": 73.18622257223667,
+          "SINR_hybrid_dB": 73.18622257223667,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        },
+        "7": {
+          "Pr_own_LOS_mW": 37.03738883612938,
+          "Pr_interf_LOS_mW": 0.20902796382865052,
+          "Pr_DIFF_mW": 0.11437379152888423,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": 44.968689908996694,
+          "SINR_DIFF_dB": 66.25166275335032,
+          "SINR_hybrid_dB": 66.25166275335032,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        },
+        "8": {
+          "Pr_own_LOS_mW": 37.10443554150838,
+          "Pr_interf_LOS_mW": 0.8597753983895436,
+          "Pr_DIFF_mW": 4.058297637352479,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": 32.700814524935254,
+          "SINR_DIFF_dB": 86.81328432688306,
+          "SINR_hybrid_dB": 86.81328432688306,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        },
+        "9": {
+          "Pr_own_LOS_mW": 37.08865984612508,
+          "Pr_interf_LOS_mW": 7.3278105055402385,
+          "Pr_DIFF_mW": 0.8124483122396604,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": 14.085338187305272,
+          "SINR_DIFF_dB": 78.83880373658778,
+          "SINR_hybrid_dB": 78.83880373658778,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        }
+      }
+    },
+    {
+      "fov_deg": 90.0,
+      "concentrador_g": 1.9124999999999999,
+      "asientos": {
+        "6": {
+          "Pr_own_LOS_mW": 0.0038249999903428025,
+          "Pr_interf_LOS_mW": 7.003574982317673,
+          "Pr_DIFF_mW": 0.4628249988314792,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": -65.25376689113729,
+          "SINR_DIFF_dB": 75.63096629459758,
+          "SINR_hybrid_dB": 75.63096629459758,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        },
+        "7": {
+          "Pr_own_LOS_mW": 35.947349909241666,
+          "Pr_interf_LOS_mW": 0.20272499948816858,
+          "Pr_DIFF_mW": 0.1109249997199413,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": 44.975160964914416,
+          "SINR_DIFF_dB": 66.02410666131813,
+          "SINR_hybrid_dB": 66.02410666131813,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        },
+        "8": {
+          "Pr_own_LOS_mW": 35.99324990912578,
+          "Pr_interf_LOS_mW": 1.3846499965040946,
+          "Pr_DIFF_mW": 3.9473999900337726,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": 28.297620383015957,
+          "SINR_DIFF_dB": 86.68515354120592,
+          "SINR_hybrid_dB": 86.68515354120592,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        },
+        "9": {
+          "Pr_own_LOS_mW": 35.981774909154744,
+          "Pr_interf_LOS_mW": 7.125974982008642,
+          "Pr_DIFF_mW": 0.7879499980106174,
+          "Pr_interf_DIFF_mW": 0.0,
+          "SINR_LOS_dB": 14.06476575321603,
+          "SINR_DIFF_dB": 78.67158583699846,
+          "SINR_hybrid_dB": 78.67158583699846,
+          "usa_DIFF": true,
+          "outage_servicio_minimo": false,
+          "outage_servicio_objetivo": false
+        }
+      }
+    }
+  ]
+}

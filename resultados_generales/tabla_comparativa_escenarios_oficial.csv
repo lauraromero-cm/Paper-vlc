@@ -1,0 +1,10 @@
+Escenario,SINR_Hybrid_min_dB(FOV90),SINR_Hybrid_prom_dB(FOV90),Pout_ServicioMinimo(FOV90)_%,Pout_ServicioObjetivo(FOV90)_%
+sin_bloqueo_0grados,74.95,79.68,0.0,0.0
+sin_bloqueo_15grados,68.88,78.36,0.0,0.0
+sin_bloqueo_30grados,74.66,78.79,0.0,0.0
+bloqueo_carrito_0grados,74.66,79.57,0.0,0.0
+bloqueo_carrito_15grados,69.36,78.37,0.0,0.0
+bloqueo_carrito_30grados,74.29,78.84,0.0,0.0
+bloqueo_persona_0grados,66.98,77.70,0.0,0.0
+bloqueo_persona_15grados,67.61,77.99,0.0,0.0
+bloqueo_persona_30grados,66.02,76.75,0.0,0.0
