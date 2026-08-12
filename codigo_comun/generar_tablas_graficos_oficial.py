@@ -136,6 +136,9 @@ def procesar_escenario(nombre):
     plt.close(fig)
 
     fila90 = next(f for f in filas if f["fov_deg"] == 90.0)
+    # P2-9: promediar siempre sobre SINR_hybrid_dB (= max(LOS,DIFF), nunca -inf
+    # por construccion), jamas sobre SINR_LOS_dB/SINR_DIFF_dB crudos, que si
+    # pueden ser -inf (cero potencia en ese canal) -- ver nota_P2-9_manejo_inf.md
     sinr_hybrid_90 = [v["SINR_hybrid_dB"] for v in fila90["asientos"].values()]
     return {
         "nombre": nombre,
