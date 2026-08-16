@@ -1,0 +1,10 @@
+Scenario,Pitch (deg),Avg Outage Min. Service (%),Avg Outage Target Service (%)
+No Blockage,0,0.0,0.0
+No Blockage,15,0.0,0.0
+No Blockage,30,0.0,0.0
+Cart Blockage,0,0.0,0.0
+Cart Blockage,15,0.0,0.0
+Cart Blockage,30,0.0,2.8
+Passenger Blockage,0,0.0,0.0
+Passenger Blockage,15,0.0,0.0
+Passenger Blockage,30,0.0,2.8

@@ -1,0 +1,4 @@
+Pitch (deg),FOVopt (deg),Min Hybrid SINR at FOVopt (dB),Avg Hybrid SINR at FOVopt (dB),Min SINR variation over 10-90 (dB)
+0,80,75.13,79.83,14.58
+15,60,69.05,76.75,13.51
+30,90,74.66,78.79,11.71
