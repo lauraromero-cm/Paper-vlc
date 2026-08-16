@@ -1,0 +1,10 @@
+Scenario,SINR_Hybrid_min_dB(FOV90),SINR_Hybrid_avg_dB(FOV90),Outage_MinimumService(FOV90)_%,Outage_TargetService(FOV90)_%
+No Blockage – 0°,74.95,79.68,0.0,0.0
+No Blockage – 15°,68.88,78.36,0.0,0.0
+No Blockage – 30°,74.66,78.79,0.0,0.0
+Cart Blockage – 0°,74.66,79.57,0.0,0.0
+Cart Blockage – 15°,69.36,78.37,0.0,0.0
+Cart Blockage – 30°,74.29,78.84,0.0,0.0
+Passenger Blockage – 0°,66.98,77.70,0.0,0.0
+Passenger Blockage – 15°,67.61,77.99,0.0,0.0
+Passenger Blockage – 30°,66.02,76.75,0.0,0.0
