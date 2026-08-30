@@ -1,0 +1,9 @@
+Threshold,Criterion,Formula,Parameters,Value (linear),Value (dB)
+"γth,1
+Minimum Service","Shannon-Hartley capacity:
+R ≥ Rmin = 5.0 Mbps",γth = 2^(Rmin/B) − 1,"Rmin = 5.0 Mbps
+B = 10.0 MHz",0.4142,-3.83
+"γth,2
+Target Service","Target BER, OOK modulation:
+BER ≤ 1e-06","BER = Q(√γth)
+⇒ γth = [Q⁻¹(BER)]²",BER_max = 1e-06,22.5950,13.54
