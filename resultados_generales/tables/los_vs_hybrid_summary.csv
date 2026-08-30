@@ -1,0 +1,10 @@
+Scenario,LOS_min_dB,LOS_avg_dB,LOS_max_dB,LOS_fully_blocked_seats,Hybrid_min_dB,Hybrid_avg_dB,Hybrid_max_dB
+No Blockage – 0°,18.42,18.72,19.02,0,74.95,79.68,84.19
+No Blockage – 15°,16.23,19.03,22.59,0,68.88,78.36,85.89
+No Blockage – 30°,13.72,20.86,29.56,0,74.66,78.79,86.73
+Cart Blockage – 0°,18.58,18.82,19.09,0,74.66,79.57,84.26
+Cart Blockage – 15°,16.24,19.17,22.80,0,69.36,78.37,85.75
+Cart Blockage – 30°,13.82,20.93,29.82,0,74.29,78.84,86.63
+Passenger Blockage – 0°,-62.16,6.02,48.44,0,66.98,77.70,84.26
+Passenger Blockage – 15°,-63.78,5.35,46.60,0,67.61,77.99,85.79
+Passenger Blockage – 30°,-65.25,5.52,44.98,0,66.02,76.75,86.69
