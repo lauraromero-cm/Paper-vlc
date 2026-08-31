@@ -1,0 +1,5 @@
+Seat,Pr_interf_LOS_NoBlockage_mW,Pr_interf_LOS_PassengerBlockage_mW,Interference_drop_x,SINR_LOS_NoBlockage_dB,SINR_LOS_PassengerBlockage_dB
+1 (blocked),4.9610,4.9036,n/a (own link blocked),18.42,-62.16
+2,4.6971,0.1568,30.0x,18.92,48.44
+3,4.9075,4.7162,1.0x,18.53,18.87
+4,4.6397,4.6933,1.0x,19.02,18.91
