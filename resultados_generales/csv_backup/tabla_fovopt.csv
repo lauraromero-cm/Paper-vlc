@@ -1,4 +1,4 @@
 Pitch (deg),FOVopt (deg),SINR minimo hibrido en FOVopt (dB),SINR promedio hibrido en FOVopt (dB),Variacion SINR minimo en 10-90 (dB)
-0,80,75.13,79.83,14.58
-15,60,69.05,76.75,13.51
-30,90,74.66,78.79,11.71
+0,80,74.68,79.54,14.12
+15,60,68.35,76.34,12.81
+30,90,74.18,78.46,12.10

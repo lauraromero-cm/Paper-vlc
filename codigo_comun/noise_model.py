@@ -29,7 +29,13 @@ BANDWIDTH_HZ = 10.0e6          # Hz, ancho de banda electrico tipico de un recep
 # Parametros del amplificador de transimpedancia (TIA), valores clasicos de
 # Komine & Nakagawa (2004), muy citados en la literatura VLC:
 OPEN_LOOP_GAIN = 10.0           # G, ganancia de lazo abierto del amplificador
-FIXED_CAPACITANCE_PER_AREA = 112e-12   # eta, F/m^2 (capacitancia fija del fotodiodo por unidad de area)
+FIXED_CAPACITANCE_PER_AREA = 112e-12 / 1e-4   # eta, F/m^2 (112 pF/cm^2, valor clasico de
+                                                # Komine-Nakagawa (2004), convertido a SI:
+                                                # 112 pF/cm^2 = 1.12e-6 F/m^2. Fix M2 del
+                                                # feedback de revision: la version anterior
+                                                # tenia 112e-12 directamente en F/m^2 (i.e.
+                                                # 112 pF/m^2), una diferencia de 10^4 en la
+                                                # unidad de area (cm^2 vs m^2).
 FET_CHANNEL_NOISE_FACTOR = 1.5  # Gamma
 FET_TRANSCONDUCTANCE = 0.030    # gm, S (30 mS)
 NOISE_BW_FACTOR_I2 = 0.562      # I2, integral de Personick (pulso raised-cosine)

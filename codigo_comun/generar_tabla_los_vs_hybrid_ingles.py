@@ -41,18 +41,31 @@ NOMBRE_EN = {
     "bloqueo_persona_30grados": "Passenger Blockage – 30°",
 }
 
+# M10(i)/(ii) del feedback de revision: el asiento con bloqueo geometrico
+# total del LOS (por diseno del escenario, ver Blockage Scenarios) debe
+# reportarse como SINR=-inf en todas las tablas, no con el valor finito
+# residual (~-62 dB) que arroja el trazador por fuga numerica/scatter en
+# el borde del objeto -- y debe excluirse del min/avg/max, no incluirse
+# como el minimo. Solo bloqueo_persona bloquea totalmente un asiento a
+# FOV=90 (RX6/Seat 1); bloqueo_carrito solo degrada un asiento a FOV
+# angosto (ya capturado aparte en Outage Probability), no lo bloquea
+# totalmente a FOV=90.
+BLOCKED_RX_AT_FOV90 = {"bloqueo_persona_0grados": 6, "bloqueo_persona_15grados": 6,
+                       "bloqueo_persona_30grados": 6}
+
 rows = []
 for nombre in ESCENARIOS:
     path = os.path.join(_PROJECT_ROOT, "escenarios", nombre, "resultados", "sinr_hibrido_oficial.json")
     with open(path, encoding="utf-8") as f:
         d = json.load(f)
     fila90 = next(f for f in d["filas"] if f["fov_deg"] == 90.0)
-    asientos = fila90["asientos"].values()
+    asientos = fila90["asientos"]
 
-    los_all = [v["SINR_LOS_dB"] for v in asientos]
+    blocked_rx = BLOCKED_RX_AT_FOV90.get(nombre)
+    los_all = [v["SINR_LOS_dB"] for rx, v in asientos.items() if int(rx) != blocked_rx]
     los_finite = [x for x in los_all if x != float("-inf")]
-    n_blocked = len(los_all) - len(los_finite)
-    hyb = [v["SINR_hybrid_dB"] for v in asientos]
+    n_blocked = 1 if blocked_rx is not None else 0
+    hyb = [v["SINR_hybrid_dB"] for v in asientos.values()]
 
     rows.append({
         "escenario": NOMBRE_EN[nombre],

@@ -64,8 +64,12 @@ with open(csv_path, "w", newline="", encoding="utf-8") as f:
     for r in rows:
         label = f"{r['seat']} (blocked)" if r["is_blocked"] else str(r["seat"])
         drop_str = "n/a (own link blocked)" if r["is_blocked"] else f"{r['drop_x']:.1f}x"
+        # M10(ii): report the geometrically blocked seat's LOS SINR as -inf
+        # (total interruption by design), not the finite residual (~-62 dB)
+        # from ray-tracer numerical leakage -- consistent with Fig. 4.
+        sinr_blk_str = "-inf (blocked)" if r["is_blocked"] else f"{r['sinr_blk']:.2f}"
         w.writerow([label, f"{r['interf_base']:.4f}", f"{r['interf_blk']:.4f}", drop_str,
-                    f"{r['sinr_base']:.2f}", f"{r['sinr_blk']:.2f}"])
+                    f"{r['sinr_base']:.2f}", sinr_blk_str])
 
 # ---------- PNG (table) ----------
 plt.rcParams.update({
@@ -79,8 +83,9 @@ cell_text = []
 for r in rows:
     label = f"{r['seat']} (blocked)" if r["is_blocked"] else str(r["seat"])
     drop_str = "—" if r["is_blocked"] else f"~{r['drop_x']:.0f}×"
+    sinr_blk_str = "−∞ (blocked)" if r["is_blocked"] else f"{r['sinr_blk']:.2f}"
     cell_text.append([label, f"{r['interf_base']:.3f}", f"{r['interf_blk']:.3f}", drop_str,
-                       f"{r['sinr_base']:.2f}", f"{r['sinr_blk']:.2f}"])
+                       f"{r['sinr_base']:.2f}", sinr_blk_str])
 
 fig, ax = plt.subplots(figsize=(11, 0.42 * (len(rows) + 1) + 1.1), dpi=200)
 ax.axis("off")

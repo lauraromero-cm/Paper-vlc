@@ -127,8 +127,10 @@ def generar(lang):
                 "the no-blockage scenario. Unlike the earlier pre-DIFF analysis, SINR now genuinely varies with\n"
                 "FOV (the FOV filter is now physically real); FOVopt is not necessarily 90 degrees.")
 
+    # M10(iii) feedback: no usar "±" -- esto es un rango (max-min del SINR
+    # minimo entre los 9 valores de FOV), no una desviacion estandar.
     cell_text = [[f"{r['pitch_deg']}", f"{int(r['fov_opt_deg'])}", f"{r['sinr_min_dB']:.2f}",
-                  f"{r['sinr_prom_dB']:.2f}", f"± {r['spread_dB']:.2f}"] for r in fovopt_rows]
+                  f"{r['sinr_prom_dB']:.2f}", f"{r['spread_dB']:.2f}"] for r in fovopt_rows]
     fname = "tabla_fovopt.png" if es else "fov_opt_table.png"
     dibujar_tabla(cell_text, col_labels, titulo, nota, os.path.join(graf_dir, fname), figwidth=9.5, row_h=2.2)
 
