@@ -1,0 +1,5 @@
+Seat,H_analytical,Pr_analytical_mW,Pr_Zemax_mW,Relative_error_%
+Seat 1 (RX6),1.950484e-02,39.0097,41.3635,+6.03
+Seat 2 (RX7),1.950484e-02,39.0097,41.4783,+6.33
+Seat 3 (RX8),1.950484e-02,39.0097,41.4286,+6.20
+Seat 4 (RX9),1.950484e-02,39.0097,41.4630,+6.29

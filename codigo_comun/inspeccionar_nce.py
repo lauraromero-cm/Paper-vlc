@@ -68,7 +68,10 @@ if __name__ == '__main__':
     TheApplication = zos.TheApplication
     TheSystem = zos.TheSystem
 
-    filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Avion_SinBloqueo_0grados_inspect.zmx")
+    _THIS_DIR = os.path.dirname(os.path.abspath(__file__))
+    _PROJECT_ROOT = os.path.abspath(os.path.join(_THIS_DIR, ".."))
+    filepath = os.path.join(_PROJECT_ROOT, "escenarios", "sin_bloqueo_0grados", "modelo",
+                             "Avion_SinBloqueo_0grados_inspect.zmx")
     zos.OpenFile(filepath, False)
 
     if TheSystem.Mode != ZOSAPI.SystemType.NonSequential:
