@@ -1,0 +1,10 @@
+Scenario,Seat1_%DIFF_selected,Seat2_%DIFF_selected,Seat3_%DIFF_selected,Seat4_%DIFF_selected
+No Blockage – 0°,100,100,100,78
+No Blockage – 15°,100,89,100,100
+No Blockage – 30°,100,100,100,100
+Cart Blockage – 0°,100,89,100,67
+Cart Blockage – 15°,100,89,100,100
+Cart Blockage – 30°,100,100,100,89
+Passenger Blockage – 0°,100,67,100,100
+Passenger Blockage – 15°,100,78,100,78
+Passenger Blockage – 30°,100,89,100,89

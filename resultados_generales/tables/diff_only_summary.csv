@@ -1,0 +1,10 @@
+Scenario,DIFF_min_dB,DIFF_avg_dB,DIFF_max_dB
+No Blockage – 0°,74.48,79.39,84.06
+No Blockage – 15°,68.18,78.02,85.80
+No Blockage – 30°,74.18,78.46,86.65
+Cart Blockage – 0°,74.18,79.27,84.14
+Cart Blockage – 15°,68.67,78.03,85.65
+Cart Blockage – 30°,73.79,78.51,86.55
+Passenger Blockage – 0°,66.21,77.33,84.14
+Passenger Blockage – 15°,66.87,77.64,85.69
+Passenger Blockage – 30°,65.23,76.35,86.61

@@ -1,0 +1,10 @@
+Scenario,FOV_10deg,FOV_20deg,FOV_30deg,FOV_40deg,FOV_50deg,FOV_60deg,FOV_70deg,FOV_80deg,FOV_90deg
+No Blockage – 0°,0,0,0,0,0,0,0,0,0
+No Blockage – 15°,0,0,0,0,0,0,0,0,0
+No Blockage – 30°,0,0,0,0,0,0,0,0,0
+Cart Blockage – 0°,0,0,0,0,0,0,0,0,0
+Cart Blockage – 15°,0,0,0,0,0,0,0,0,0
+Cart Blockage – 30°,25,0,0,0,0,0,0,0,0
+Passenger Blockage – 0°,0,0,0,0,0,0,0,0,0
+Passenger Blockage – 15°,0,0,0,0,0,0,0,0,0
+Passenger Blockage – 30°,25,0,0,0,0,0,0,0,0
