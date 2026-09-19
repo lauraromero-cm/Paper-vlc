@@ -9,14 +9,16 @@ detalle de como se identifico. Las 4 lamparas LOS (Tx2-5) y sus 4
 receptores propios (Rx6-9) comparten X e Y; solo difieren en Z por 53
 unidades del modelo, con phi=psi=0 (perfectamente enfrentados).
 
-*** PENDIENTE DE CONFIRMAR (ver mensaje adjunto): si esas 53 unidades de
-separacion en Z ya estan en mm reales o necesitan el factor de escala 1:5
-documentado en P0-1 (que aplica, segun la propia nota de P0-1, a la
-proporcion en X -- no necesariamente a Z). Con Z sin escalar (d=53mm) el
-error vs. Zemax es +6.0% a +6.3% en los 4 asientos (consistente, plausible
-como resultado de validacion). Con Z escalado x5 (d=265mm) el error es
-+2550% (fisicamente inconsistente). Este script usa por defecto Z SIN
-escalar; cambiar Z_SCALE_FACTOR a 5.0 si se confirma lo contrario.
+CONFIRMADO (Laura, 2026-09-19): la malla STL del fuselaje esta importada a
+escala 1:5 (subdimensionada), pero los objetos NSC puestos a mano (Tx LOS,
+Rx, DIFF) se posicionaron directamente en milimetros reales -- el "53" de
+la separacion Tx-Rx en Z se tipeo en Zemax como mm reales, no se deriva
+del mallado STL. Son dos sistemas de referencia distintos en el mismo
+archivo: el 1:5 de P0-1 aplica a dimensiones derivadas del STL (p.ej. el
+ancho de asiento en X), no a estas coordenadas NSC explicitas. Por eso
+Z_SCALE_FACTOR=1.0 (sin escalar) es lo correcto aqui, consistente con el
+error de validacion razonable (+6.0% a +6.3%) obtenido con d=53mm real,
+contra el +2550% fisicamente inconsistente que da escalar x5.
 """
 import os, csv, math
 import matplotlib
@@ -33,8 +35,9 @@ os.makedirs(_TABLES_DIR, exist_ok=True)
 os.makedirs(_GRAPHS_DIR, exist_ok=True)
 
 # --- Geometria extraida del .zmx (ver docstring) ---
-D_MODEL_UNITS = 53.0            # separacion Tx-Rx propia, unidades del modelo, eje Z
-Z_SCALE_FACTOR = 1.0            # <-- PENDIENTE DE CONFIRMAR: 1.0 (sin escalar) o 5.0
+D_MODEL_UNITS = 53.0            # separacion Tx-Rx propia, eje Z, en mm reales (coordenada
+                                 # NSC puesta a mano, no derivada del mallado STL a escala 1:5)
+Z_SCALE_FACTOR = 1.0            # confirmado: no aplica el 1:5 del STL a esta coordenada
 D_REAL_M = D_MODEL_UNITS * Z_SCALE_FACTOR / 1000.0
 PHI_DEG = 0.0                   # angulo de irradiancia en el Tx (perfectamente enfrentado)
 PSI_DEG = 0.0                   # angulo de incidencia en el Rx
@@ -95,9 +98,9 @@ for (row_i, col_i), cell in tabla.get_celld().items():
 ax.set_title(f"Zemax vs. Analytical Lambertian Channel (m={int(m)}, d={D_REAL_M*1000:.0f} mm, FOV=90°, no blockage)",
              fontsize=11.5, pad=14, loc="left", weight="bold")
 fig.text(0.01, -0.05,
-          "PENDING CONFIRMATION: Tx-Rx vertical separation extracted from the .zmx (53 model units) is assumed\n"
-          "already in real mm here (Z_SCALE_FACTOR=1.0), not scaled by the 1:5 CAD factor documented for the\n"
-          "lateral (X) axis in P0-1. If Z also requires x5 scaling, this table must be regenerated -- see project notes.",
+          "Tx-Rx vertical separation (53 mm) extracted from the .zmx as a directly-entered NSC coordinate, in real\n"
+          "mm -- unlike the imported fuselage STL mesh, which is at 1:5 scale (P0-1). The lateral (X) CAD scale\n"
+          "factor of P0-1 does not apply to this manually-placed Tx/Rx/DIFF geometry.",
           fontsize=7.5, color="#898781")
 fig.tight_layout()
 fig.savefig(os.path.join(_GRAPHS_DIR, "analytical_validation.png"), bbox_inches="tight")
