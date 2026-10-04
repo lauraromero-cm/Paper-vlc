@@ -19,17 +19,20 @@ ancho de asiento en X), no a estas coordenadas NSC explicitas.
 
 CORREGIDO (revision del agente redactor): la version anterior de este
 script incluia Tf en la formula analitica (nm.FILTER_TRANSMISSION), pero
-Pr_own_LOS_mW exportado por el pipeline oficial NUNCA tiene Tf aplicado
-(Tf solo se aplica dentro de compute_sinr al calcular el SINR, no se
-hornea en el Pr exportado -- ver noise_model.compute_sinr). Comparar un
-analitico CON Tf contra un Zemax SIN Tf era una inconsistencia que
-invertia el signo del error (+6.0% en vez del -4.6% real). Quitado Tf de
-la formula aqui para comparar like-for-like. El resultado es un sesgo
-sistematico de -4.6% SIN ATRIBUIR: no se explica por el perfil Lambertiano
-discretizado de 5 nodos de la fuente (~+1.3% segun estimacion aparte, no
-alcanza) ni por reflexiones (el signo iria al reves). Se reporta como
-sesgo sistematico pendiente de investigar, no como una validacion exitosa
-con margen chico.
+comparaba contra Pr_own_LOS_mW exportado SIN Tf (Tf solo se aplica dentro
+de compute_sinr al calcular el SINR, no se hornea en el Pr exportado --
+ver noise_model.compute_sinr). Esa inconsistencia invertia el signo del
+error (+6.0% en vez del -4.6% real). Corregido aplicando Tf EXPLICITAMENTE
+en ambos lados (en el analitico, y multiplicando el Pr_own_LOS_mW
+exportado por Tf antes de comparar) para que ambos representen la misma
+cantidad fisica (potencia tras el filtro). Matematicamente Tf se cancela
+en el error relativo porcentual -- el resultado (-4.3% a -4.6%) es
+identico a omitirlo de los dos lados, pero queda explicito por claridad.
+El sesgo es sistematico y SIN ATRIBUIR: no se explica por el perfil
+Lambertiano discretizado de 5 nodos de la fuente (~+1.3% segun estimacion
+aparte, no alcanza) ni por reflexiones (el signo iria al reves). Se
+reporta como sesgo sistematico pendiente de investigar, no como una
+validacion exitosa con margen chico.
 """
 import os, csv, math
 import matplotlib
@@ -58,11 +61,14 @@ POPT_W = 2.0
 
 g = nm.concentrator_gain(FOV_REF)
 m = 1.0
-# Sin Tf: Pr_own_LOS_mW (Zemax) no lo tiene aplicado, asi que se compara
-# like-for-like (ver docstring).
+# Tf aplicado explicitamente en AMBOS lados (en el analitico, y multiplicando
+# el Pr_own_LOS_mW exportado por Zemax, que no lo tiene aplicado de forma
+# nativa). Matematicamente Tf se cancela en el error relativo porcentual --
+# el resultado es identico a omitirlo de los dos lados (ver docstring) --
+# pero se deja explicito en ambos lados por claridad de presentacion.
 H_analitico = ((m + 1) * nm.DETECTOR_AREA / (2 * math.pi * D_REAL_M ** 2)
                * math.cos(math.radians(PHI_DEG)) ** m
-               * g * math.cos(math.radians(PSI_DEG)))
+               * nm.FILTER_TRANSMISSION * g * math.cos(math.radians(PSI_DEG)))
 Pr_analitico_mW = POPT_W * H_analitico * 1000.0
 
 import json
@@ -74,7 +80,11 @@ fila90 = next(f for f in d["filas"] if f["fov_deg"] == FOV_REF)
 
 rows = []
 for label, rx in SEATS.items():
-    pr_zemax_mW = fila90["asientos"][str(rx)]["Pr_own_LOS_mW"]
+    # Pr_own_LOS_mW exportado no tiene Tf aplicado nativamente (ver
+    # noise_model.compute_sinr); se multiplica aqui por Tf para que el
+    # lado "Zemax" represente la misma cantidad fisica (potencia tras el
+    # filtro) que el lado analitico.
+    pr_zemax_mW = fila90["asientos"][str(rx)]["Pr_own_LOS_mW"] * nm.FILTER_TRANSMISSION
     err_pct = 100.0 * (pr_zemax_mW - Pr_analitico_mW) / Pr_analitico_mW
     rows.append({"seat": label, "pr_zemax": pr_zemax_mW, "err_pct": err_pct})
 

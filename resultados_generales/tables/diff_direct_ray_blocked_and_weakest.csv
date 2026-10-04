@@ -1,0 +1,13 @@
+tipo,pitch,seat,Pr_directo_mW,Pr_DIFF_exportado_raw_mW,fraccion_directa_pct,n_rayos_eq
+asiento_bloqueado,0,1,1.0899,1.222,89.2,611.0
+asiento_bloqueado,15,1,0.5205,0.688,75.7,344.0
+asiento_bloqueado,30,1,0.0,0.242,0.0,121.0
+asiento_mas_debil_sin_bloqueo_0grados,0,4,0.1443,0.216,66.8,108.0
+asiento_mas_debil_sin_bloqueo_15grados,15,2,0.0125,0.086,14.6,43.0
+asiento_mas_debil_sin_bloqueo_30grados,30,2,0.0,0.206,0.0,103.0
+asiento_mas_debil_bloqueo_carrito_0grados,0,4,0.1443,0.206,70.0,103.0
+asiento_mas_debil_bloqueo_carrito_15grados,15,2,0.0125,0.092,13.6,46.0
+asiento_mas_debil_bloqueo_carrito_30grados,30,2,0.0,0.194,0.0,97.0
+asiento_mas_debil_bloqueo_persona_0grados,0,2,0.1443,0.066,218.6,33.0
+asiento_mas_debil_bloqueo_persona_15grados,15,2,0.0125,0.072,17.4,36.0
+asiento_mas_debil_bloqueo_persona_30grados,30,2,0.0,0.058,0.0,29.0
