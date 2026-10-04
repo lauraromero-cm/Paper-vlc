@@ -15,10 +15,21 @@ Rx, DIFF) se posicionaron directamente en milimetros reales -- el "53" de
 la separacion Tx-Rx en Z se tipeo en Zemax como mm reales, no se deriva
 del mallado STL. Son dos sistemas de referencia distintos en el mismo
 archivo: el 1:5 de P0-1 aplica a dimensiones derivadas del STL (p.ej. el
-ancho de asiento en X), no a estas coordenadas NSC explicitas. Por eso
-Z_SCALE_FACTOR=1.0 (sin escalar) es lo correcto aqui, consistente con el
-error de validacion razonable (+6.0% a +6.3%) obtenido con d=53mm real,
-contra el +2550% fisicamente inconsistente que da escalar x5.
+ancho de asiento en X), no a estas coordenadas NSC explicitas.
+
+CORREGIDO (revision del agente redactor): la version anterior de este
+script incluia Tf en la formula analitica (nm.FILTER_TRANSMISSION), pero
+Pr_own_LOS_mW exportado por el pipeline oficial NUNCA tiene Tf aplicado
+(Tf solo se aplica dentro de compute_sinr al calcular el SINR, no se
+hornea en el Pr exportado -- ver noise_model.compute_sinr). Comparar un
+analitico CON Tf contra un Zemax SIN Tf era una inconsistencia que
+invertia el signo del error (+6.0% en vez del -4.6% real). Quitado Tf de
+la formula aqui para comparar like-for-like. El resultado es un sesgo
+sistematico de -4.6% SIN ATRIBUIR: no se explica por el perfil Lambertiano
+discretizado de 5 nodos de la fuente (~+1.3% segun estimacion aparte, no
+alcanza) ni por reflexiones (el signo iria al reves). Se reporta como
+sesgo sistematico pendiente de investigar, no como una validacion exitosa
+con margen chico.
 """
 import os, csv, math
 import matplotlib
@@ -46,11 +57,12 @@ FOV_REF = 90.0
 POPT_W = 2.0
 
 g = nm.concentrator_gain(FOV_REF)
-H_analitico = ((nm.RESPONSIVITY * 0 + 1) * 0)  # placeholder removed below
 m = 1.0
+# Sin Tf: Pr_own_LOS_mW (Zemax) no lo tiene aplicado, asi que se compara
+# like-for-like (ver docstring).
 H_analitico = ((m + 1) * nm.DETECTOR_AREA / (2 * math.pi * D_REAL_M ** 2)
                * math.cos(math.radians(PHI_DEG)) ** m
-               * nm.FILTER_TRANSMISSION * g * math.cos(math.radians(PSI_DEG)))
+               * g * math.cos(math.radians(PSI_DEG)))
 Pr_analitico_mW = POPT_W * H_analitico * 1000.0
 
 import json
@@ -99,8 +111,10 @@ ax.set_title(f"Zemax vs. Analytical Lambertian Channel (m={int(m)}, d={D_REAL_M*
              fontsize=11.5, pad=14, loc="left", weight="bold")
 fig.text(0.01, -0.05,
           "Tx-Rx vertical separation (53 mm) extracted from the .zmx as a directly-entered NSC coordinate, in real\n"
-          "mm -- unlike the imported fuselage STL mesh, which is at 1:5 scale (P0-1). The lateral (X) CAD scale\n"
-          "factor of P0-1 does not apply to this manually-placed Tx/Rx/DIFF geometry.",
+          "mm -- unlike the imported fuselage STL mesh, which is at 1:5 scale (P0-1). Pr_Zemax is the raw exported\n"
+          "power (no Tf applied, matching the analytical formula above). The resulting -4.6% bias is systematic\n"
+          "and unattributed -- not explained by the 5-node discretized Lambertian source profile (~+1.3%, too\n"
+          "small) nor by reflections (wrong sign); reported as a flagged discrepancy, not a validated match.",
           fontsize=7.5, color="#898781")
 fig.tight_layout()
 fig.savefig(os.path.join(_GRAPHS_DIR, "analytical_validation.png"), bbox_inches="tight")
