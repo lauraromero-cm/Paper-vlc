@@ -33,7 +33,7 @@ gamma_th2_dB = nm.db(gamma_th2)
 rows = [
     {
         "umbral": "γth,1\nMinimum Service",
-        "criterio": f"Shannon-Hartley capacity:\nR ≥ Rmin = {nm.R_MIN_BPS/1e6:.1f} Mbps",
+        "criterio": f"Shannon-Hartley capacity:\nR ≥ Rmin = {nm.R_MIN_BPS/1e6:.1f} Mbps\n(γ defined on I_signal = ON level)",
         "formula": "γth = 2^(Rmin/B) − 1",
         "parametros": f"Rmin = {nm.R_MIN_BPS/1e6:.1f} Mbps\nB = {nm.BANDWIDTH_HZ/1e6:.1f} MHz",
         "valor_lineal": gamma_th1,
@@ -41,8 +41,8 @@ rows = [
     },
     {
         "umbral": "γth,2\nTarget Service",
-        "criterio": f"Target BER, OOK modulation:\nBER ≤ {nm.BER_MAX:.0e}",
-        "formula": "BER = Q(√γth)\n⇒ γth = [Q⁻¹(BER)]²",
+        "criterio": f"Target BER, OOK modulation, threshold detection:\nBER ≤ {nm.BER_MAX:.0e}",
+        "formula": "BER = Q(√γth / 2)\n⇒ γth = 4·[Q⁻¹(BER)]²",
         "parametros": f"BER_max = {nm.BER_MAX:.0e}",
         "valor_lineal": gamma_th2,
         "valor_dB": gamma_th2_dB,
@@ -88,7 +88,9 @@ for (row_i, col_i), cell in tabla.get_celld().items():
 ax.set_title("SINR Thresholds (γth) used in Section 5", fontsize=13, pad=16, loc="left", weight="bold")
 fig.text(0.01, -0.05,
           "B = receiver electrical bandwidth (VLC-literature assumption, see noise_model.py). "
-          "These thresholds are system constants, the same across all scenarios and FOVs.",
+          "These thresholds are system constants, the same across all scenarios and FOVs. gamma_th,2 includes\n"
+          "the factor of 4 because I_signal in the code is the OOK ON (peak) level, not an average power; with\n"
+          "gamma_th,2=13.54dB (BER=Q(sqrt(gamma_th)), without that factor) no outage changes: 0 of 324 cells.",
           fontsize=8, color="#898781")
 fig.tight_layout()
 fig.savefig(os.path.join(_GRAPHS_DIR, "sinr_threshold_table.png"), bbox_inches="tight")

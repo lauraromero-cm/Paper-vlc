@@ -176,9 +176,21 @@ def q_function_inverse(p, tol=1e-12, max_iter=200):
 
 
 def sinr_threshold_from_ber(ber_max=BER_MAX):
-    """Para OOK con deteccion de umbral: BER = Q(sqrt(SINR))  =>  SINR_th = [Q^-1(BER)]^2."""
+    """Para OOK con deteccion de umbral, BER = Q(sqrt(gamma)/2) => gamma_th = 4*[Q^-1(BER)]^2.
+
+    El factor 4 (no 1, como en una version previa de esta funcion) es
+    consecuencia directa de que I_signal en compute_sinr() es el nivel
+    "ON" (pico) de OOK, I_signal=R*Pr con Pr=Popt (ver M4: Popt se define
+    como la potencia del simbolo ON, no la potencia optica media). La
+    distancia entre los niveles 0/1 en deteccion por umbral es el nivel
+    ON completo, no el nivel ON menos la media; eso introduce el factor 4
+    en potencia (factor 2 en amplitud) respecto de la formula BER=Q(sqrt(gamma))
+    que corresponderia a una definicion de gamma basada en SNR promedio.
+    Corregido tras revision: con BER=Q(sqrt(gamma)) se obtenia gamma_th2=13.54dB,
+    inconsistente con la propia definicion de I_signal del codigo; con el
+    factor 4 correcto, gamma_th2=19.56dB."""
     x = q_function_inverse(ber_max)
-    return x ** 2
+    return 4.0 * x ** 2
 
 
 def db(x):

@@ -1,0 +1,10 @@
+Scenario,Outage_MinService_gamma1=-3.83dB_%,Outage_TargetService_gamma2=19.56dB_%
+No Blockage – 0°,0.0,100.0
+No Blockage – 15°,0.0,50.0
+No Blockage – 30°,0.0,50.0
+Cart Blockage – 0°,0.0,100.0
+Cart Blockage – 15°,0.0,50.0
+Cart Blockage – 30°,0.0,50.0
+Passenger Blockage – 0°,25.0,75.0
+Passenger Blockage – 15°,25.0,50.0
+Passenger Blockage – 30°,25.0,50.0

@@ -497,11 +497,16 @@
     }
   ],
   "gamma_th1_servicio_minimo_dB": -3.82775685337863,
-  "gamma_th2_servicio_objetivo_dB": 13.540131656211575,
+  "gamma_th2_servicio_objetivo_dB": 19.560731569491196,
   "correccion_M2_ruido_termico": {
     "aplicada": true,
     "fecha": "2026-09-14T09:55:59.538253",
     "nota": "eta (capacitancia fija del fotodetector) corregida de 112 pF/m^2 a 112 pF/cm^2 = 1.12e-6 F/m^2 (valor clasico Komine-Nakagawa). sigma2_th paso de ~6.55e-21 A^2 a ~1.01e-16 A^2. Recalculado por post-procesamiento puro sobre las potencias opticas ya exportadas (Pr_own_LOS_mW, Pr_interf_LOS_mW, Pr_DIFF_mW, Pr_interf_DIFF_mW); no se volvio a correr Zemax ni a trazar rayos.",
     "delta_max_SINR_hybrid_dB_bloqueo_carrito_15grados": 0.8892
+  },
+  "correccion_formula_BER_M_agenteRedactor": {
+    "fecha": "2026-10-04T18:23:27.637536",
+    "nota": "gamma_th2 corregido de 13.54dB a 19.56dB: BER=Q(sqrt(gamma)/2), no Q(sqrt(gamma)), consistente con I_signal=nivel ON (ver noise_model.sinr_threshold_from_ber). SINR_hybrid_dB NO cambia, solo el flag de outage_servicio_objetivo.",
+    "celdas_cambiadas_outage_objetivo": 0
   }
 }

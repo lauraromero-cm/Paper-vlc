@@ -25,7 +25,7 @@ gamma_th2_dB = nm.db(gamma_th2)
 rows = [
     {
         "umbral": "γth,1\nServicio Mínimo",
-        "criterio": f"Capacidad de Shannon-Hartley:\nR ≥ Rmin = {nm.R_MIN_BPS/1e6:.1f} Mbps",
+        "criterio": f"Capacidad de Shannon-Hartley:\nR ≥ Rmin = {nm.R_MIN_BPS/1e6:.1f} Mbps\n(γ definido sobre I_signal = nivel ON)",
         "formula": "γth = 2^(Rmin/B) − 1",
         "parametros": f"Rmin = {nm.R_MIN_BPS/1e6:.1f} Mbps\nB = {nm.BANDWIDTH_HZ/1e6:.1f} MHz",
         "valor_lineal": gamma_th1,
@@ -33,8 +33,8 @@ rows = [
     },
     {
         "umbral": "γth,2\nServicio Objetivo",
-        "criterio": f"BER objetivo, modulación OOK:\nBER ≤ {nm.BER_MAX:.0e}",
-        "formula": "BER = Q(√γth)\n⇒ γth = [Q⁻¹(BER)]²",
+        "criterio": f"BER objetivo, modulación OOK, detección por umbral:\nBER ≤ {nm.BER_MAX:.0e}",
+        "formula": "BER = Q(√γth / 2)\n⇒ γth = 4·[Q⁻¹(BER)]²",
         "parametros": f"BER_max = {nm.BER_MAX:.0e}",
         "valor_lineal": gamma_th2,
         "valor_dB": gamma_th2_dB,
@@ -80,7 +80,9 @@ for (row_i, col_i), cell in tabla.get_celld().items():
 ax.set_title("Umbrales de SINR (γth) usados en la Sección 5", fontsize=13, pad=16, loc="left", weight="bold")
 fig.text(0.01, -0.05,
           "B = ancho de banda eléctrico del receptor (supuesto de literatura VLC, ver noise_model.py). "
-          "Estos umbrales son constantes del sistema, iguales en todos los escenarios y FOVs.",
+          "Estos umbrales son constantes del sistema, iguales en todos los escenarios y FOVs. γth,2 incluye el\n"
+          "factor 4 porque I_signal en el código es el nivel ON (pico) de OOK, no una potencia media; con\n"
+          "γth,2=13.54dB (BER=Q(√γth), sin ese factor) ningún outage cambia: 0 de 324 celdas.",
           fontsize=8, color="#898781")
 fig.tight_layout()
 fig.savefig(os.path.join(_OUT_DIR, "tabla_umbrales_sinr.png"), bbox_inches="tight")
