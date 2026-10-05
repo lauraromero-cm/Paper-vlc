@@ -1,4 +1,4 @@
-pitch,FOV_opt,min_SINR_FOVopt_dB,n_rayos_FOVopt,min_SINR_90_dB,n_rayos_90,mejora_dB,incertidumbre_combinada_dB,mejora_defendible
-0,90.0,66.21,33.0,66.21,33.0,0.0,0.99,NO (dentro del ruido)
-15,60.0,67.4,29.0,66.87,36.0,0.53,1.0,NO (dentro del ruido)
-30,60.0,67.4,29.0,65.23,29.0,2.17,1.05,SI
+pitch,FOV_opt,min_SINR_FOVopt_dB,n_rayos_FOVopt,sigma_FOVopt_dB,min_SINR_90_dB,n_rayos_90,sigma_90_dB,mejora_dB,incertidumbre_combinada_dB,mejora_defendible,nota
+0,90.0,66.21,33,1.314,66.21,33,1.314,0.00,1.314,NO (dentro del ruido),"trivial (FOVopt = 90, mismo punto)"
+15,60.0,67.40,29,1.376,66.87,36,1.246,0.53,1.856,NO (dentro del ruido),cuadratura (muestras independientes)
+30,60.0,67.40,29,1.376,65.23,29,1.421,2.17,0.000,SI,"determinista (mismos rayos, sin incertidumbre en la comparacion)"
