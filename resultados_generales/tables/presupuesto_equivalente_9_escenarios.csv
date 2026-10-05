@@ -1,0 +1,10 @@
+Scenario,"LOS-only(2W,10MHz)_min_dB",LOS-only_avg_dB,LOS-only_Pout@gth1=-3.83dB_%,LOS-only_Pout@gth2=19.56dB_%,"DIFF-only(2W,10MHz)_min_dB",DIFF-only_avg_dB,DIFF-only_Pout@gth1=-3.83dB_%,DIFF-only_Pout@gth2=19.56dB_%,"Hybrid(1W+1W,5MHz)_min_dB",Hybrid_avg_dB,Hybrid_Pout@gth1=0.00dB_%,Hybrid_Pout@gth2=19.56dB_%
+sin_bloqueo_0grados,18.42,18.72,0.0,100.0,74.48,79.39,0.0,0.0,73.20,78.55,0.0,0.0
+sin_bloqueo_15grados,16.23,19.03,0.0,50.0,68.18,78.02,0.0,0.0,66.40,77.08,0.0,0.0
+sin_bloqueo_30grados,13.72,20.86,0.0,50.0,74.18,78.46,0.0,0.0,72.87,77.53,0.0,0.0
+bloqueo_carrito_0grados,18.58,18.82,0.0,100.0,74.18,79.27,0.0,0.0,72.87,78.43,0.0,0.0
+bloqueo_carrito_15grados,16.24,19.17,0.0,50.0,68.67,78.03,0.0,0.0,66.92,77.09,0.0,0.0
+bloqueo_carrito_30grados,13.82,20.93,0.0,50.0,73.79,78.51,0.0,0.0,72.45,77.58,0.0,0.0
+bloqueo_persona_0grados,-62.16,6.02,25.0,75.0,66.21,77.33,0.0,0.0,64.32,76.34,0.0,0.0
+bloqueo_persona_15grados,-63.78,5.35,25.0,50.0,66.87,77.64,0.0,0.0,65.00,76.67,0.0,0.0
+bloqueo_persona_30grados,-65.25,5.52,25.0,50.0,65.23,76.35,0.0,0.0,63.28,75.27,0.0,0.0
