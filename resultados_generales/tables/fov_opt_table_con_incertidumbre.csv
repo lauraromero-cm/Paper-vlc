@@ -1,0 +1,4 @@
+Pitch (deg),FOVopt (deg),Weakest seat (RX),Channel,Min Hybrid SINR (dB),n_rays (eq.),Real exponent d,"+-dB (1 sigma, real d)"
+0,80,9,DIFF,74.68,108.0,1.455,0.608
+15,60,7,DIFF,68.35,33.0,1.679,1.269
+30,90,7,DIFF,74.18,103.0,1.474,0.631
