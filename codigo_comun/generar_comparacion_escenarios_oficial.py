@@ -230,15 +230,22 @@ def generar(lang):
             if bloqueados:
                 ax.scatter(bloqueados, [floor_dB] * len(bloqueados), marker="x", s=60,
                            color=COLOR_ESCENARIO[esc], zorder=5, linewidths=2.0)
-        ax.axhline(gamma_th2_dB, color="#0b0b0b", linestyle="--", linewidth=1.0, alpha=0.6)
+        ax.axhline(gamma_th2_dB, color="#0b0b0b", linestyle="--", linewidth=1.0, alpha=0.6,
+                   label=(f"γth,2 Servicio Objetivo ({gamma_th2_dB:.1f} dB)" if es
+                          else f"γth,2 Target Service ({gamma_th2_dB:.1f} dB)"))
         ax.set_title(f"Pitch {p}°")
         ax.set_xlabel("FOV del receptor (°)" if es else "Receiver FOV (°)")
         ax.set_xticks(fovs_ref)
         ax.tick_params(axis='x', labelrotation=45)
+    for i, ax in enumerate(axes):
+        letra = "abc"[i]
+        ax.annotate(f"({letra})", xy=(0.0, 1.0), xycoords="axes fraction",
+                    xytext=(-28, 22), textcoords="offset points",
+                    fontsize=12, fontweight="bold", va="top", ha="left")
     axes[0].set_ylabel(("SINR (dB) — Asiento 1" if es else "SINR (dB) — Seat 1"))
     axes[0].set_ylim(floor_dB - 1.0, max(all_finite) + 1.0)
     handles, labels = axes[0].get_legend_handles_labels()
-    fig.legend(handles, labels, loc="lower center", bbox_to_anchor=(0.5, -0.1), ncol=3, frameon=False, fontsize=9)
+    fig.legend(handles, labels, loc="lower center", bbox_to_anchor=(0.5, -0.1), ncol=4, frameon=False, fontsize=9)
     if es:
         fig.suptitle("Validación de Resiliencia — SINR del asiento bloqueado vs FOV (LOS vs Hybrid)", fontsize=13, y=1.02)
         fig.text(0.01, -0.18, "× = LOS totalmente bloqueado (-∞ dB), graficado en el piso solo para visualización.\n"
